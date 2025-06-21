@@ -14,7 +14,7 @@
         android:scaleType="fitXY"
         android:src="@drawable/img"
         app:shapeAppearanceOverlay="@style/circleImageView"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="103dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +43,7 @@
         android:layout_marginHorizontal="16dp"
         android:gravity="center"
         android:background="@drawable/boder"
-        android:layout_width="0dp"
+        android:layout_width="353dp"
         android:layout_height="40dp"
         >
 
@@ -53,8 +53,9 @@
             android:layout_height="20dp"
             />
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="155dp"
+            android:layout_height="20dp"
+            android:lineHeight="20px"
             android:layout_marginStart="6dp"
             android:textColor="#112C35"
             android:textSize="14sp"
@@ -63,24 +64,163 @@
             />
     </LinearLayout>
 <LinearLayout
-    android:id="@+id/bth_login_fb"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:id="@+id/btn_login_fb"
+    android:layout_width="353dp"
+    android:layout_height="40dp"
     android:orientation="horizontal"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
+    android:layout_marginHorizontal="16dp"
     app:layout_constraintTop_toBottomOf="@id/btn_login_kakao"
-    android:layout_marginTop="53dp"
+    android:layout_marginTop="9dp"
+    android:background="@drawable/login_fb"
     android:gravity="center">
 
+    <ImageView
+        android:src="@drawable/ic_fb"
+        android:layout_width="17dp"
+        android:layout_height="17dp"/>
+
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="154dp"
+        android:layout_height="20dp"
+        android:lineHeight="20px"
         android:text="Đăng nhập với Facebook"
         android:layout_marginStart="6dp"
         android:textColor="#FFFFFF"
+        android:textFontWeight="500"
+        android:textSize="14sp"
         />
 
 </LinearLayout>
+
+<LinearLayout
+        android:id="@+id/btn_login_apple"
+        android:layout_width="353dp"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_login_fb"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="9dp"
+        android:background="@drawable/login_apple"
+        android:gravity="center">
+
+    <ImageView
+        android:src="@drawable/ic_apple"
+        android:layout_width="13dp"
+        android:layout_height="15dp"/>
+
+    <TextView
+        android:layout_width="129dp"
+        android:layout_height="20dp"
+        android:lineHeight="20px"
+        android:text="Đăng nhập với Apple"
+        android:textSize="14sp"
+        android:layout_marginStart="6dp"
+        android:textFontWeight="500"
+        android:textColor="#FFFFFF"/>
+</LinearLayout>
+
+<LinearLayout
+    android:id="@+id/login_tiktok"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/btn_login_apple"
+    android:layout_marginTop="9dp"
+    android:layout_marginHorizontal="16dp"
+    android:layout_width="353dp"
+    android:layout_height="40dp"
+    android:background="@drawable/login_tiktok"
+    android:gravity="center">
+    
+    <ImageView
+        android:src="@drawable/ic_tiktok"
+        android:layout_width="17dp"
+        android:layout_height="17dp"/>
+
+    <TextView
+        android:layout_width="132dp"
+        android:layout_height="20dp"
+        android:text="Đăng nhập với Tiktok"
+        android:lineHeight="20px"
+        android:textColor="#3D4E2B"
+        android:textFontWeight="500"
+        android:textSize="14sp"
+        android:layout_marginStart="6dp"/>
+</LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/login_google"
+        android:layout_width="353dp"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_tiktok"
+        android:layout_marginTop="9dp"
+        android:layout_marginHorizontal="16dp"
+        android:background="@drawable/login_tiktok"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/ic_login_google"/>
+
+        <TextView
+            android:layout_width="138dp"
+            android:layout_height="20dp"
+            android:lineHeight="20px"
+            android:text="Đăng nhập với Google"
+            android:textSize="14sp"
+            android:textColor="#3D4E2B"
+            android:textFontWeight="500"
+            android:layout_marginStart="6dp"/>
+    </LinearLayout>
+
+<LinearLayout
+    android:id="@+id/login_zalo"
+    android:layout_width="353dp"
+    android:layout_height="40dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/login_google"
+    android:layout_marginTop="9dp"
+    android:layout_marginHorizontal="16dp"
+    android:background="@drawable/login_tiktok"
+    android:gravity="center">
+    
+    <ImageView
+        android:layout_width="19dp"
+        android:layout_height="18dp"
+        android:src="@drawable/ic_zalo"
+        />
+
+    <TextView
+        android:layout_width="121dp"
+        android:layout_height="20dp"
+        android:text="Đăng nhập với Zalo"
+        android:textColor="#3D4E2B"
+        android:lineHeight="20px"
+        android:layout_marginStart="6dp"
+        android:textSize="14sp"
+        android:textFontWeight="500"/>
+</LinearLayout>
+
+<TextView
+    android:layout_width="89dp"
+    android:layout_height="20dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/login_zalo"
+    android:layout_marginTop="19dp"
+    android:text="@string/KOL"
+    android:lineHeight="20px"
+    android:textFontWeight="500"
+    android:textSize="14sp"
+    android:textColor="#595D5F"
+    android:gravity="center"
+    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

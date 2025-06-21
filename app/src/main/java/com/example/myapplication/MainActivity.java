@@ -23,5 +23,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // todo navigate to login screen
+        Intent m = new Intent(this, LoginActivity.class);
+        startActivity(m);
     }
 }
