@@ -23,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
         loginKol.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new  Intent(LoginActivity.this,LoginKolActivity.class);
+                Intent intent = new  Intent(LoginActivity.this, LoginKolActivity.class);
                 startActivity(intent);
             }
         });

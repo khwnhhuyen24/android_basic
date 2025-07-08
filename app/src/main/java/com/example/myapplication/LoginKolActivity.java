@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -15,17 +16,22 @@ import android.text.style.StyleSpan;
 import android.util.Patterns;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 public class LoginKolActivity extends AppCompatActivity {
-    EditText edtEmail, edtPassword;
-    TextView tvEmailError, tvPasswordError;
-    Button btnLogin;
+
+    private EditText edtEmail, edtPassword;
+    private TextView tvEmailError, tvPasswordError;
+    private AppCompatButton btnLogin;
+
+    // Thêm cờ để kiểm soát người dùng đã nhập ô nào
+    private boolean emailStarted = false;
+    private boolean passwordStarted = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,79 +43,73 @@ public class LoginKolActivity extends AppCompatActivity {
         tvEmailError = findViewById(R.id.tvEmailError);
         tvPasswordError = findViewById(R.id.tvPasswordError);
         btnLogin = findViewById(R.id.btnLogin);
+        TextView tvForgotPassword = findViewById(R.id.tvForgotPassword);
         TextView signUp = findViewById(R.id.sign_up);
-        ImageButton icPassword =findViewById(R.id.ic_password);
+        ImageButton icPassword = findViewById(R.id.ic_password);
 
-        icPassword.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch(event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        edtPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                        return true;
-                    case MotionEvent.ACTION_UP:
-                    case MotionEvent.ACTION_CANCEL:
-                        edtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                        edtPassword.setSelection(edtPassword.getText().length());
-                }
-                return false;
+        // Hiện/ẩn mật khẩu
+        icPassword.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                edtPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                return true;
+            } else if (event.getAction() == MotionEvent.ACTION_UP || event.getAction() == MotionEvent.ACTION_CANCEL) {
+                edtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                edtPassword.setSelection(edtPassword.getText().length());
             }
+            return false;
         });
 
-        btnLogin.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent = new  Intent(LoginKolActivity.this,TargetActivity.class);
-                startActivity(intent);
-            }
+        // Đăng nhập
+        btnLogin.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginKolActivity.this, TargetActivity.class);
+            startActivity(intent);
         });
-        // Làm đậm phần "Đăng ký ngay"
+
+        // Quên mật khẩu
+        tvForgotPassword.setOnClickListener(v -> {
+            AlertDialog dialog = new AlertDialog.Builder(LoginKolActivity.this)
+                    .setView(getLayoutInflater().inflate(R.layout.dialog, null))
+                    .create();
+            dialog.show();
+            dialog.findViewById(R.id.btnDong).setOnClickListener(v2 -> dialog.dismiss());
+        });
+
+        // Làm đậm "Đăng ký ngay"
         String fullText = "Chưa có Tài khoản? Đăng ký ngay";
         SpannableString spannable = new SpannableString(fullText);
         spannable.setSpan(new StyleSpan(Typeface.BOLD),
-                fullText.indexOf("Đăng ký ngay"),
-                fullText.length(),
+                fullText.indexOf("Đăng ký ngay"), fullText.length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         signUp.setText(spannable);
 
-        // Tắt nút login ban đầu
+        // Disable login ban đầu
         btnLogin.setEnabled(false);
         btnLogin.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#666666")));
 
+        // Gắn listener riêng cho email
         edtEmail.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void afterTextChanged(Editable s) {}
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                checkEmailOnly();
+                emailStarted = true;
                 checkEnableLogin();
             }
-            @Override public void afterTextChanged(Editable s) {}
         });
 
-
+        // Gắn listener riêng cho password
         edtPassword.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void afterTextChanged(Editable s) {}
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                checkPasswordOnly();
+                passwordStarted = true;
                 checkEnableLogin();
             }
-            @Override public void afterTextChanged(Editable s) {}
         });
     }
 
-    private void checkEmailOnly() {
-        String email = edtEmail.getText().toString().trim();
-        boolean isEmailValid = Patterns.EMAIL_ADDRESS.matcher(email).matches();
-        tvEmailError.setVisibility(isEmailValid ? View.GONE : View.VISIBLE);
-    }
-
-    private void checkPasswordOnly() {
-        String password = edtPassword.getText().toString();
-        boolean isPassValid = password.length() >= 6 && password.length() <= 8;
-        tvPasswordError.setVisibility(isPassValid ? View.GONE : View.VISIBLE);
-    }
-
+    // Kiểm tra và cập nhật UI
     private void checkEnableLogin() {
         String email = edtEmail.getText().toString().trim();
         String password = edtPassword.getText().toString();
@@ -117,13 +117,14 @@ public class LoginKolActivity extends AppCompatActivity {
         boolean isEmailValid = Patterns.EMAIL_ADDRESS.matcher(email).matches();
         boolean isPassValid = password.length() >= 6 && password.length() <= 8;
 
-        if (isEmailValid && isPassValid) {
-            btnLogin.setEnabled(true);
-            btnLogin.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#60D7B2")));
-        } else {
-            btnLogin.setEnabled(false);
-            btnLogin.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#666666")));
-        }
+        // Chỉ hiển thị lỗi khi người dùng đã bắt đầu nhập ô đó
+        tvEmailError.setVisibility(emailStarted && !isEmailValid ? View.VISIBLE : View.GONE);
+        tvPasswordError.setVisibility(passwordStarted && !isPassValid ? View.VISIBLE : View.GONE);
 
+        boolean isValid = isEmailValid && isPassValid;
+        btnLogin.setEnabled(isValid);
+        btnLogin.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor(
+                isValid ? "#60D7B2" : "#666666"
+        )));
     }
 }
