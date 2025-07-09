@@ -18,7 +18,13 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+//pluginManagement {
+//    repositories {
+//        google()
+//        gradlePluginPortal()
+//        mavenCentral()
+//    }
+//}
 
 rootProject.name = "My Application"
 include(":app")
- 

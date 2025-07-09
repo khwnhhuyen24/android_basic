@@ -1,4 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_home"
+        android:title="Trang chủ" />
+
+    <item
+        android:id="@+id/nav_discover"
+        android:icon="@drawable/ic_discover"
+        android:title="Khám phá"/>
+
+    <item
+        android:id="@+id/nav_account"
+        android:icon="@drawable/ic_account"
+        android:title="Tài khoản"/>
+
+    <item
+        android:id="@+id/nav_brand"
+        android:icon="@drawable/ic_brand"
+        android:title="Brand" />
+
+    <item
+        android:id="@+id/nav_notify"
+        android:icon="@drawable/ic_notice"
+        android:title="Thông báo"/>
 </menu>

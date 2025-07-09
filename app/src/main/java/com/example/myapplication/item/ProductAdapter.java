@@ -67,8 +67,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         // Rating sao
         holder.ratingBar.setRating((float) product.getAverageStar());
 
-        // Load ảnh sản phẩm
-        Glide.with(context).load(product.getProductImage()).into(holder.imageProduct);
+        // ✅ Load ảnh sản phẩm từ URL
+        Glide.with(context)
+                .load(product.getProductImageUrl())
+                .placeholder(R.drawable.banner1) // ảnh tạm
+                .error(R.drawable.banner3)       // nếu lỗi
+                .into(holder.imageProduct);
 
         // Gạch ngang giá gốc
         holder.textOldPrice.setPaintFlags(holder.textOldPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);

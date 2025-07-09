@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.myapplication.R;
-import com.example.myapplication.adapter.BrandAdapter;
+import com.example.myapplication.item.BrandAdapter;
 import com.example.myapplication.model.Brand;
 import com.example.myapplication.model.MockBrandData; // 👉 Thêm dòng này để gọi dữ liệu mock
 
@@ -32,7 +32,7 @@ public class BrandFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_brand, container, false);
 
-        recyclerView = view.findViewById(R.id.recyclerViewBestSeller);
+        recyclerView = view.findViewById(R.id.recyclerBrand);
 
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setHasFixedSize(true);

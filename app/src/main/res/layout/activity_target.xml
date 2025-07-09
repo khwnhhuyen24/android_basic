@@ -13,7 +13,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
     <TextView
         android:layout_width="386dp"
         android:layout_height="38dp"
@@ -51,33 +51,52 @@
         android:orientation="vertical">
 
         <RadioButton
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:id="@+id/rbChamSocDaMat"
             android:layout_width="155dp"
             android:layout_height="wrap_content"
             android:text="Chăm sóc da mặt"
             android:textSize="13sp"
             android:textColor="#2E2E2E"
+            android:padding="12dp"
+            android:button="@null"
+            android:drawableLeft="@drawable/radio_select"
             android:background="@drawable/target"/>
 
         <RadioButton
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:id="@+id/rbMakeup"
             android:layout_width="155dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Makeup"
             android:textSize="13sp"
+            android:padding="12dp"
+            android:button="@null"
+            android:drawableLeft="@drawable/radio_select"
             android:background="@drawable/target"
             android:textColor="#2E2E2E" />
 
         <RadioButton
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:id="@+id/rbVitamin"
             android:layout_width="155dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Vitamin &amp;thực phẩm chức năng"
             android:textColor="#2E2E2E"
             android:textSize="13sp"
+            android:padding="12dp"
+            android:button="@null"
+            android:drawableLeft="@drawable/radio_select"
             android:background="@drawable/target"/>
     </LinearLayout>
 
     <LinearLayout
+
         android:layout_width="160dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/beauty"
@@ -88,29 +107,47 @@
         android:orientation="vertical">
 
         <RadioButton
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:id="@+id/rbChamSocCoThe"
             android:layout_width="155dp"
             android:layout_height="wrap_content"
             android:text="Chăm sóc cơ thể"
             android:textSize="13sp"
+            android:padding="12dp"
+            android:button="@null"
+            android:drawableLeft="@drawable/radio_select"
             android:textColor="#2E2E2E"
             android:background="@drawable/target"/>
 
         <RadioButton
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:id="@+id/rbChamSocToc"
             android:layout_width="155dp"
             android:layout_height="wrap_content"
             android:textColor="#2E2E2E"
             android:text="Chăm sóc tóc"
             android:layout_marginTop="16dp"
             android:textSize="13sp"
+            android:padding="12dp"
+            android:button="@null"
+            android:drawableLeft="@drawable/radio_select"
             android:background="@drawable/target"/>
 
         <RadioButton
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:id="@+id/rbChamSocRangMieng"
             android:layout_width="155dp"
             android:layout_height="wrap_content"
             android:textSize="13sp"
             android:textColor="#2E2E2E"
             android:text="Chăm sóc răng miệng"
             android:layout_marginTop="16dp"
+            android:padding="12dp"
+            android:button="@null"
+            android:drawableLeft="@drawable/radio_select"
             android:background="@drawable/target"/>
     </LinearLayout>
 
@@ -138,38 +175,62 @@
         android:orientation="vertical">
 
         <RadioButton
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:id="@+id/rbAoNu"
             android:layout_width="155dp"
             android:layout_height="wrap_content"
             android:text="Áo nữ"
             android:textSize="13sp"
             android:textColor="#2E2E2E"
+            android:padding="12dp"
+            android:button="@null"
+            android:drawableLeft="@drawable/radio_select"
             android:background="@drawable/target"/>
 
         <RadioButton
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:id="@+id/rbChanVay"
             android:layout_width="155dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Chân váy"
             android:textSize="13sp"
+            android:padding="12dp"
+            android:button="@null"
+            android:drawableLeft="@drawable/radio_select"
             android:textColor="#2E2E2E"
             android:background="@drawable/target"/>
 
         <RadioButton
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:id="@+id/rbAoNam"
             android:layout_width="155dp"
             android:layout_height="wrap_content"
             android:text="Áo nam"
             android:textSize="13sp"
             android:textColor="#2E2E2E"
             android:layout_marginTop="16dp"
+            android:padding="12dp"
+            android:button="@null"
+            android:drawableLeft="@drawable/radio_select"
             android:background="@drawable/target"/>
 
         <RadioButton
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:id="@+id/rbPhuKien"
             android:layout_width="155dp"
             android:layout_height="wrap_content"
             android:text="Phụ kiện"
             android:textSize="13sp"
             android:textColor="#2E2E2E"
             android:layout_marginTop="16dp"
+            android:padding="12dp"
+            android:button="@null"
+            android:drawableLeft="@drawable/radio_select"
             android:background="@drawable/target"/>
     </LinearLayout>
 
@@ -184,33 +245,51 @@
         android:orientation="vertical">
 
         <RadioButton
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:id="@+id/rbQuanNu"
             android:layout_width="155dp"
             android:layout_height="wrap_content"
             android:textColor="#2E2E2E"
+            android:padding="12dp"
+            android:button="@null"
+            android:drawableLeft="@drawable/radio_select"
             android:text="Quần nữ"
             android:textSize="13sp"
             android:background="@drawable/target"/>
 
         <RadioButton
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:id="@+id/rbDam"
             android:layout_width="155dp"
             android:layout_height="wrap_content"
             android:textSize="13sp"
             android:textColor="#2E2E2E"
             android:layout_marginTop="16dp"
             android:text="Đầm"
+            android:padding="12dp"
+            android:button="@null"
+            android:drawableLeft="@drawable/radio_select"
             android:background="@drawable/target"/>
 
         <RadioButton
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:id="@+id/rbQuanNam"
             android:layout_width="155dp"
             android:layout_height="wrap_content"
             android:textColor="#2E2E2E"
             android:textSize="13sp"
             android:text="Quần nam"
+            android:padding="12dp"
+            android:button="@null"
+            android:drawableLeft="@drawable/radio_select"
             android:layout_marginTop="16dp"
             android:background="@drawable/target"/>
     </LinearLayout>
 
-     <TextView
+     <androidx.appcompat.widget.AppCompatButton
          android:id="@+id/Skip"
          android:layout_width="123dp"
          android:layout_height="49dp"
@@ -221,15 +300,15 @@
          android:layout_marginTop="521dp"
          android:layout_marginStart="69dp"
          android:layout_marginEnd="190dp"
-         android:background="@drawable/target"
+         android:background="@drawable/login_tiktok"
          android:text="Bỏ qua"
          android:textSize="13sp"
          android:layout_marginBottom="24dp"
          android:gravity="center"
          android:textColor="#595D5F"/>
 
-        <TextView
-            android:id="@+id/Save"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSave"
             android:layout_width="123dp"
             android:layout_height="48dp"
             android:text="Lưu"
@@ -244,6 +323,8 @@
             android:layout_marginStart="171dp"
             android:background="@drawable/login_kol"
             android:gravity="center"/>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

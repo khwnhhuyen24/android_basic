@@ -1,4 +1,4 @@
-package com.example.myapplication.adapter;
+package com.example.myapplication.item;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -38,12 +38,12 @@ public class BrandAdapter extends RecyclerView.Adapter<BrandAdapter.BrandViewHol
         Brand brand = brandList.get(position);
         holder.idBrand.setText(brand.getBrandName());
 
-        int imageResId = context.getResources().getIdentifier(
-                brand.getBrandAvatar(), "drawable", context.getPackageName());
+        String avatarUrl = brand.getBrandAvatar();
 
         Glide.with(context)
-                .load(imageResId)
-                .placeholder(R.drawable.img_brand1)
+                .load(avatarUrl) // load ảnh từ URL
+                .placeholder(R.drawable.img_brand1) // ảnh mặc định khi đang load
+                .error(R.drawable.img_brand5) // ảnh hiển thị khi load lỗi
                 .into(holder.imgLogo);
     }
 

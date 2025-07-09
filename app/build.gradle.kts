@@ -1,5 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
+
+
 }
 
 android {
@@ -33,6 +35,12 @@ android {
 
 dependencies {
 
+    implementation(libs.retrofit)
+    implementation(libs.gson)
+    implementation(libs.picasso)
+    implementation(libs.cardview)
+    implementation(libs.recyclerview)
+    implementation(libs.core)
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
@@ -40,4 +48,9 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
+
+
 }

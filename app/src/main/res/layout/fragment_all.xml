@@ -1,14 +1,287 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AllFragment">
+    android:fillViewport="true">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <!-- BANNER -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/bannerViewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#80FFFFFF" />
+
+
+            <!-- Dòng kẻ ngang chứa các đoạn -->
+            <LinearLayout
+                android:id="@+id/indicatorLine"
+                android:layout_width="287dp"
+                android:layout_marginTop="189dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="4dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:orientation="horizontal"
+                android:layout_toStartOf="@id/pageCount"
+                android:gravity="center_vertical" />
+
+            <!-- Text hiển thị số trang -->
+            <TextView
+                android:id="@+id/pageCount"
+                android:layout_width="35dp"
+                android:layout_height="24dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="329dp"
+                android:layout_marginTop="161dp"
+                android:paddingHorizontal="8dp"
+                android:background="#88000000"
+                android:text="1/4"
+                android:textColor="@android:color/white"
+                android:textSize="9sp"
+                android:gravity="center"
+                android:backgroundTint="#88000000"
+                android:clipToOutline="true"
+                android:elevation="2dp" />
+        </FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FAEBF0"
+            android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="11dp"
+            android:layout_gravity="center"
+            android:background="#FFFFFF"/>
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="11dp"
+            android:layout_gravity="center"
+            android:background="#FFF3F1"/>
+        </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#F2D2DD"
+    android:orientation="horizontal"
+    android:paddingVertical="8dp">
+
+        <LinearLayout
+            android:id="@+id/beauty"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:src="@drawable/img_beauty"
+                android:layout_width="61dp"
+                android:layout_height="61dp"
+                android:scaleType="centerInside"
+                app:shapeAppearanceOverlay="@style/RatingBarStyle"
+                app:strokeColor="@android:color/white"
+                app:strokeWidth="2dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Beauty"/>
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fashion"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:src="@drawable/img_fashion"
+            android:layout_width="61dp"
+            android:layout_height="61dp"
+            android:scaleType="centerInside"
+            app:shapeAppearanceOverlay="@style/RatingBarStyle"
+            app:strokeColor="@android:color/white"
+            app:strokeWidth="2dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fashion"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Healthy"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:layout_width="61dp"
+            android:layout_height="61dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/img_healthy"
+            app:shapeAppearanceOverlay="@style/RatingBarStyle"
+            app:strokeColor="@android:color/white"
+            app:strokeWidth="2dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Healthy"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/beautyTip"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+        <com.google.android.material.imageview.ShapeableImageView
+            android:src="@drawable/img_beauty_tip"
+            android:layout_width="61dp"
+            android:layout_height="61dp"
+            android:scaleType="centerInside"
+            app:shapeAppearanceOverlay="@style/RatingBarStyle"
+            app:strokeColor="@android:color/white"
+            app:strokeWidth="2dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Beauty Tip"/>
+
+    </LinearLayout>
+</LinearLayout>
+        <!-- SECTION 1: SẢN PHẨM DÀNH CHO BẠN -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sản Phẩm Dành Cho Bạn"
+                android:textColor="#111"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_suggestion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2" />
+
+            <!-- Nút Xem Thêm -->
+            <Button
+                android:id="@+id/btnSeeMoreSuggestion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Xem Thêm"
+                android:textSize="14sp"
+                android:layout_marginTop="12dp"
+                android:background="@android:color/white"
+                android:padding="8dp"
+                android:elevation="2dp"
+                android:textColor="#000" />
+        </LinearLayout>
+
+        <!-- SECTION 2: SẢN PHẨM ĐƯỢC YÊU THÍCH -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sản Phẩm Được Yêu Thích Nhất"
+                android:textColor="#111"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_favorite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2" />
+            <Button
+                android:id="@+id/btnSeeMoreFavorite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Xem Thêm"
+                android:textSize="14sp"
+                android:layout_marginTop="12dp"
+                android:background="@android:color/white"
+                android:padding="8dp"
+                android:elevation="2dp"
+                android:textColor="#000" />
+        </LinearLayout>
+
+        <!-- SECTION 3: SẢN PHẨM BÁN CHẠY NHẤT -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sản Phẩm Bán Chạy Nhất"
+                android:textColor="#111"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_best_seller"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2" />
+            <Button
+                android:id="@+id/btnSeeMoreBest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Xem Thêm"
+                android:textSize="14sp"
+                android:layout_marginTop="12dp"
+                android:background="@android:color/white"
+                android:padding="8dp"
+                android:elevation="2dp"
+                android:textColor="#000" />
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

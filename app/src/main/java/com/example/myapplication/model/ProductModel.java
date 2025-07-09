@@ -1,6 +1,5 @@
 package com.example.myapplication.model;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,54 +9,73 @@ public class ProductModel implements Serializable {
 
     private int productId;
     private String productCode;
-    private String productImage;
+
+    // Thay productImage int bằng String để lưu URL ảnh đại diện
+    private String productImageUrl;
+
     private int productRemain;
     private int productRemainVn;
     private int productRemainKr;
+
     private String madeIn;
     private int buyCount;
     private int likeNumber;
     private int commentCount;
     private double averageStar;
+
     private int price;
     private int priceVn;
     private int priceKr;
+
     private int priceSales;
     private int priceSalesVn;
     private int priceSalesKr;
+
     private double percentKol;
     private double percentKolVn;
     private double percentKolKr;
+
     private String productName;
     private String productDescription;
+
+    // Danh sách URL ảnh cho banner
     private ArrayList<String> productImages;
+
     private boolean isFreeDelivery;
     private boolean isFreeDeliveryVn;
     private boolean isFreeDeliveryKr;
+
     private boolean isSupportBankTransfer;
     private boolean isSupportTransportInternational;
+
     private boolean isActive;
+
     private String mfgDate;
     private String insertDateTime;
     private String updateDateTime;
+
     private int brandId;
     private int categoryId;
+
     private Brand brand;
     private Category category;
+
     private boolean likeStatus;
     private String saveStatus;
+
     private List<DynamicSizes> dynamicSizes;
     private transient List<DynamicColors> dynamicColors;
 
-    // Các getter và setter
+    // Getter và Setter
     public int getProductId() { return productId; }
     public void setProductId(int productId) { this.productId = productId; }
 
     public String getProductCode() { return productCode; }
     public void setProductCode(String productCode) { this.productCode = productCode; }
 
-    public String getProductImage() { return productImage; }
-    public void setProductImage(String productImage) { this.productImage = productImage; }
+    // Sửa getter và setter cho ảnh đại diện là String URL
+    public String getProductImageUrl() { return productImageUrl; }
+    public void setProductImageUrl(String productImageUrl) { this.productImageUrl = productImageUrl; }
 
     public int getProductRemain() { return productRemain; }
     public void setProductRemain(int productRemain) { this.productRemain = productRemain; }

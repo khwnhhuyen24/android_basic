@@ -119,7 +119,12 @@ public class AllFragment extends Fragment {
 
         // Dữ liệu banner giả lập
         List<Integer> banners = Arrays.asList(
-
+                R.drawable.banner1,
+                R.drawable.banner2,
+                R.drawable.banner4,
+                R.drawable.banner5,
+                R.drawable.banner6,
+                R.drawable.banner7
         );
 
         BannerAdapter bannerAdapter = new BannerAdapter(banners);

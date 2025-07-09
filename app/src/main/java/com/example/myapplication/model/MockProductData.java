@@ -22,7 +22,7 @@ public class MockProductData {
 
             product.setProductId(productId);
             product.setProductCode("P00" + productId);
-            product.setProductRemain(100 + i);
+            product.setProductRemain(0 + i);
             product.setProductRemainVn(50 + i);
             product.setProductRemainKr(30 + i);
             product.setMadeIn(i % 2 == 0 ? "Korea" : "Vietnam");
@@ -42,10 +42,10 @@ public class MockProductData {
             product.setProductName("Product " + productId);
             product.setProductDescription("Mô tả chi tiết sản phẩm số " + productId);
             product.setProductImages(new ArrayList<>(Arrays.asList(
-                    "https://atinproduction.com/wp-content/uploads/2021/07/AWP01220-scaled-1280x1920.jpg" + productId + "_1.jpg",
-                    "https://atinproduction.com/wp-content/uploads/2021/07/AWP01220-scaled-1280x1920.jpg" + productId + "_2.jpg",
-                    "https://atinproduction.com/wp-content/uploads/2021/07/AWP01220-scaled-1280x1920.jpg" + productId + "_3.jpg",
-                    "https://atinproduction.com/wp-content/uploads/2021/07/AWP01220-scaled-1280x1920.jpg" + productId + "_4.jpg"
+                    "https://example.com/image" + productId + "_1.jpg",
+                    "https://example.com/image" + productId + "_2.jpg",
+                    "https://example.com/image" + productId + "_3.jpg",
+                    "https://example.com/image" + productId + "_.jpg"
             )));
             product.setFreeDelivery(i % 2 == 0);
             product.setFreeDeliveryVn(true);
