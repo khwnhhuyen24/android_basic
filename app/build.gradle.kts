@@ -34,7 +34,7 @@ android {
 }
 
 dependencies {
-
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation(libs.retrofit)
     implementation(libs.gson)
     implementation(libs.picasso)

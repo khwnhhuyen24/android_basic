@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -13,40 +14,59 @@ import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.text.style.StyleSpan;
-import android.util.Patterns;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
-public class LoginKolActivity extends AppCompatActivity {
+import com.example.myapplication.model.LoginParams;
+import com.example.myapplication.model.LoginResponse;
+import com.example.myapplication.remote.ApiClient;
+import com.example.myapplication.remote.ApiService;
 
-    private EditText edtEmail, edtPassword;
-    private TextView tvEmailError, tvPasswordError;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class LoginKolActivity extends AppCompatActivity {
+    private ApiService apiService = ApiClient.getRetrofit().create(ApiService.class);
+
+    private EditText edtEmail;
+    private EditText edtPassword;
+    private TextView tvEmailError;
+    private TextView tvPasswordError;
     private AppCompatButton btnLogin;
+    private TextView tvForgotPassword;
+    private TextView signUp;
+    private ImageButton icPassword;
+    private ProgressBar progressBar;
 
     // Thêm cờ để kiểm soát người dùng đã nhập ô nào
     private boolean emailStarted = false;
     private boolean passwordStarted = false;
 
+    private static final String PREFS_NAME = "tungvu11";
+    private static final String KEY_IS_LOGGED_IN = "Hanoi@123";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_login_kol);
 
-        edtEmail = findViewById(R.id.edtEmail);
-        edtPassword = findViewById(R.id.edtPassword);
-        tvEmailError = findViewById(R.id.tvEmailError);
-        tvPasswordError = findViewById(R.id.tvPasswordError);
-        btnLogin = findViewById(R.id.btnLogin);
-        TextView tvForgotPassword = findViewById(R.id.tvForgotPassword);
-        TextView signUp = findViewById(R.id.sign_up);
-        ImageButton icPassword = findViewById(R.id.ic_password);
+        initView();
+        initEvent();
+    }
 
+    private void initEvent() {
         // Hiện/ẩn mật khẩu
         icPassword.setOnTouchListener((v, event) -> {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -61,8 +81,40 @@ public class LoginKolActivity extends AppCompatActivity {
 
         // Đăng nhập
         btnLogin.setOnClickListener(v -> {
-            Intent intent = new Intent(LoginKolActivity.this, TargetActivity.class);
-            startActivity(intent);
+            progressBar.setVisibility(View.VISIBLE);
+            LoginParams params = new LoginParams();
+            params.setLoginId(edtEmail.getText().toString());
+            params.setPasswords(edtPassword.getText().toString());
+
+            Call<LoginResponse> call = apiService.login(params);
+            call.enqueue(new Callback<LoginResponse>() {
+                @Override
+                public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                    progressBar.setVisibility(View.GONE);
+                    if (response.isSuccessful()) {
+                        Toast.makeText(LoginKolActivity.this, "Login successful", Toast.LENGTH_LONG).show();
+
+                        // Lưu trạng thái đăng nhập vào SharedPreferences
+                        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.putBoolean(KEY_IS_LOGGED_IN, true);
+                        editor.apply();
+
+                        Log.e("LoginKolActivity", response.body().getCustomerAccount().avatar);
+                        Intent intent = new Intent(LoginKolActivity.this, TargetActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        Toast.makeText(LoginKolActivity.this, "Login failed", Toast.LENGTH_LONG).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<LoginResponse> call, Throwable throwable) {
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(LoginKolActivity.this, "Login failed", Toast.LENGTH_LONG).show();
+                }
+            });
         });
 
         // Quên mật khẩu
@@ -109,13 +161,25 @@ public class LoginKolActivity extends AppCompatActivity {
         });
     }
 
+    private void initView() {
+        edtEmail = findViewById(R.id.edtEmail);
+        edtPassword = findViewById(R.id.edtPassword);
+        tvEmailError = findViewById(R.id.tvEmailError);
+        tvPasswordError = findViewById(R.id.tvPasswordError);
+        btnLogin = findViewById(R.id.btnLogin);
+        tvForgotPassword = findViewById(R.id.tvForgotPassword);
+        signUp = findViewById(R.id.sign_up);
+        icPassword = findViewById(R.id.ic_password);
+        progressBar = findViewById(R.id.progress_login);
+    }
+
     // Kiểm tra và cập nhật UI
     private void checkEnableLogin() {
         String email = edtEmail.getText().toString().trim();
         String password = edtPassword.getText().toString();
 
-        boolean isEmailValid = Patterns.EMAIL_ADDRESS.matcher(email).matches();
-        boolean isPassValid = password.length() >= 6 && password.length() <= 8;
+        boolean isEmailValid = true; // Bạn có thể thay bằng kiểm tra email hợp lệ như Patterns.EMAIL_ADDRESS.matcher(email).matches()
+        boolean isPassValid = password.length() >= 6 && password.length() <= 20;
 
         // Chỉ hiển thị lỗi khi người dùng đã bắt đầu nhập ô đó
         tvEmailError.setVisibility(emailStarted && !isEmailValid ? View.VISIBLE : View.GONE);

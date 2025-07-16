@@ -21,38 +21,43 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        initView();
+        initEvent();
 
+    }
 
-
+    private void initView(){
         bottomNav = findViewById(R.id.bottom_navigation);
+    }
 
+    private void initEvent(){
         // Set Fragment mặc định
         loadFragment(new HomeFragment());
 
         bottomNav.setOnItemSelectedListener(item ->  {
 
-                Fragment selectedFragment = null;
+            Fragment selectedFragment = null;
 
-                int itemId = item.getItemId();
+            int itemId = item.getItemId();
 
-                if (itemId == R.id.nav_home) {
-                    selectedFragment = new HomeFragment();
+            if (itemId == R.id.nav_home) {
+                selectedFragment = new HomeFragment();
 
-                } else if (itemId == R.id.nav_discover) {
-                    selectedFragment = new DiscoverFragment();
+            } else if (itemId == R.id.nav_discover) {
+                selectedFragment = new DiscoverFragment();
 
-                } else if (itemId == R.id.nav_account) {
-                    selectedFragment = new AccountFragment();
+            } else if (itemId == R.id.nav_account) {
+                selectedFragment = new AccountFragment();
 
-                } else if (itemId == R.id.nav_brand) {
-                    selectedFragment = new BrandFragment();
+            } else if (itemId == R.id.nav_brand) {
+                selectedFragment = new BrandFragment();
 
-                } else if (itemId == R.id.nav_notify) {
-                    selectedFragment = new NotifyFragment();
+            } else if (itemId == R.id.nav_notify) {
+                selectedFragment = new NotifyFragment();
 
-                }
+            }
 
-                return loadFragment(selectedFragment);
+            return loadFragment(selectedFragment);
 
         });
 
@@ -74,7 +79,6 @@ public class HomeActivity extends AppCompatActivity {
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragment_container, fragment)
-                    .addToBackStack(null)
                     .commit();
             return true;
         }

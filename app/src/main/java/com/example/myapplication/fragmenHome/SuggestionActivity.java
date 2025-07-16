@@ -25,9 +25,17 @@ public class SuggestionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_suggestion);
 
-        // Ánh xạ các view
+        initView();
+        initEvent();
+    }
+
+    private void initView(){
         recyclerView = findViewById(R.id.recyclerViewSuggestion);
         backButton = findViewById(R.id.back); // LinearLayout chứa ImageButton
+
+    }
+
+    private void initEvent(){
 
         // Thiết lập layout cho RecyclerView (2 cột)
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));

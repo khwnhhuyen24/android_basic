@@ -18,16 +18,16 @@
             android:name=".FullFragmentDetailProActivity"
             android:exported="false" />
         <activity
-            android:name=".DetailBrandActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SelectProductActivity"
-            android:exported="false" />
-        <activity
-            android:name=".VoucherActivity"
-            android:exported="false" />
-        <activity
             android:name=".DetailProductActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SelectProductFragment"
+            android:exported="false" />
+        <activity
+            android:name=".VoucherFragment"
+            android:exported="false" />
+        <activity
+            android:name=".DetailBrandFragment"
             android:exported="false" />
         <activity
             android:name=".fragmenHome.FavoriteActivity"
@@ -53,9 +53,13 @@
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
+
+
         <activity
-            android:name=".MainActivity"
+            android:name=".LauncherActivity"
             android:exported="true">
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

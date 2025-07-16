@@ -1,7 +1,5 @@
 package com.example.myapplication.model;
 
-import com.example.myapplication.R;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -62,7 +60,7 @@ public class MockProductData {
             product.setBrand(brand);
 
             // Gán Category
-            Category category = new Category();
+            CategoryModel category = new CategoryModel();
             category.setCategoryId(i);
             category.setCategoryParentId(100 + i);
             category.setCategoryParentName("Parent Category " + i);
@@ -78,18 +76,18 @@ public class MockProductData {
             category.setCategorySlideImages(slideImages);
 
             // CategoryParentSlideImage giả lập
-            ArrayList<CategoryParentSlideImage> parentSlides = new ArrayList<>();
-            parentSlides.add(new CategoryParentSlideImage(i * 10 + 1, i, product.getProductId(), "https://example.com/parent_slide" + i + "_1.jpg"));
-            parentSlides.add(new CategoryParentSlideImage(i * 10 + 2, i, product.getProductId(), "https://example.com/parent_slide" + i + "_2.jpg"));
+            ArrayList<CategoryParentSlideImageModel> parentSlides = new ArrayList<>();
+            parentSlides.add(new CategoryParentSlideImageModel(i * 10 + 1, i, product.getProductId(), "https://example.com/parent_slide" + i + "_1.jpg"));
+            parentSlides.add(new CategoryParentSlideImageModel(i * 10 + 2, i, product.getProductId(), "https://example.com/parent_slide" + i + "_2.jpg"));
             category.setCategoryParentSlideImages(parentSlides);
 
             product.setCategoryId(i);
             product.setCategory(category);
 
             // DynamicSizes
-            List<DynamicSizes> sizeList = new ArrayList<>();
+            List<DynamicSizesModel> sizeList = new ArrayList<>();
             for (int j = 1; j <= 3; j++) {
-                DynamicSizes size = new DynamicSizes();
+                DynamicSizesModel size = new DynamicSizesModel();
                 size.setDynamicSizeId(j);
                 size.setDynamicSizeCode("SIZE_" + j);
                 size.setPrice(100000 + j * 1000);
@@ -121,9 +119,9 @@ public class MockProductData {
             product.setDynamicSizes(sizeList);
 
             // DynamicColors
-            List<DynamicColors> colorList = new ArrayList<>();
+            List<DynamicColorsModel> colorList = new ArrayList<>();
             for (int k = 1; k <= 3; k++) {
-                DynamicColors color = new DynamicColors();
+                DynamicColorsModel color = new DynamicColorsModel();
 
                 color.setDynamicColorId(k);
                 color.setDynamicColorCode("COLOR_" + k);

@@ -2,13 +2,13 @@ package com.example.myapplication.model;
 
 import java.io.Serializable;
 
-public class CategoryParentSlideImage implements Serializable {
+public class CategoryParentSlideImageModel implements Serializable {
     private int id;
     private int categoryId;
     private int productId;
     private String imageName;
 
-    public CategoryParentSlideImage(int id, int categoryId, int productId, String imageName) {
+    public CategoryParentSlideImageModel(int id, int categoryId, int productId, String imageName) {
         this.id = id;
         this.categoryId = categoryId;
         this.productId = productId;

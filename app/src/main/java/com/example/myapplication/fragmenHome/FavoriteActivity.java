@@ -24,23 +24,29 @@ public class FavoriteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite);
+        initView();
+        initEvent();
+    }
 
-        // Ánh xạ các view
+    private void initView(){
         recyclerView = findViewById(R.id.recyclerViewFavorite);
         backButton = findViewById(R.id.back); // LinearLayout chứa ImageButton
 
-        // Thiết lập layout cho RecyclerView (2 cột)
+    }
+
+    private void initEvent(){
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
-        // Lấy dữ liệu giả lập
-        @SuppressWarnings("unchecked")
-        ArrayList<ProductModel> productList =
-                (ArrayList<ProductModel>) getIntent().getSerializableExtra("productList");
-        // Gán adapter
-        adapter = new ProductAdapter(this, productList);
-        recyclerView.setAdapter(adapter);
+        // ❗ Không khai báo lại — dùng biến toàn cục
+        productList = (ArrayList<ProductModel>) getIntent().getSerializableExtra("productList");
 
-        // Xử lý nút back
-        backButton.setOnClickListener(v -> finish()); // Quay lại Fragment trước (AllFragment)
+        // ✅ Kiểm tra null trước khi gán adapter
+        if (productList != null) {
+            adapter = new ProductAdapter(this, productList);
+            recyclerView.setAdapter(adapter);
+        }
+
+        backButton.setOnClickListener(v -> finish());
     }
+
 }

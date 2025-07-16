@@ -2,10 +2,14 @@ package com.example.myapplication.model;
 
 import java.io.Serializable;
 
-public class DynamicSizes implements Serializable {
+public class DynamicColorsModel implements Serializable {
     private static final long serialVersionUID = 1L;
-    private Integer dynamicSizeId;
-    private String dynamicSizeCode;
+
+    private Integer dynamicColorId;
+    private String dynamicColorCode;
+    private String dynamicColorName;
+    private String dynamicColorNameVn;
+    private String dynamicColorNameKr;
     private Integer price;
     private Integer priceVn;
     private Integer priceKr;
@@ -18,27 +22,29 @@ public class DynamicSizes implements Serializable {
     private Integer productRemain;
     private Integer productRemainVn;
     private Integer productRemainKr;
-    private Integer priceAfterSales;
-    private Integer priceAfterSalesVn;
-    private Integer priceAfterSalesKr;
     private Integer priceSales;
     private Integer priceSalesVn;
     private Integer priceSalesKr;
+    private Integer priceAfterSales;
+    private Integer priceAfterSalesVn;
+    private Integer priceAfterSalesKr;
 
-    // Constructor mặc định (không tham số)
-    public DynamicSizes() {
+
+    public DynamicColorsModel() {
     }
-
-    // Constructor đầy đủ tham số
-    // Constructor đầy đủ tham số
-    public DynamicSizes(Integer dynamicSizeId, String dynamicSizeCode, Integer price, Integer priceVn, Integer priceKr,
-                        Double percentSales, Double percentSalesVn, Double percentSalesKr,
-                        Double percentKol, Double percentKolVn, Double percentKolKr,
-                        Integer productRemain, Integer productRemainVn, Integer productRemainKr,
-                        Integer priceAfterSales, Integer priceAfterSalesVn, Integer priceAfterSalesKr,
-                        Integer priceSales, Integer priceSalesVn, Integer priceSalesKr) {
-        this.dynamicSizeId = dynamicSizeId;
-        this.dynamicSizeCode = dynamicSizeCode;
+    // Constructor
+    public DynamicColorsModel(Integer dynamicColorId, String dynamicColorCode, String dynamicColorName,
+                              String dynamicColorNameVn, String dynamicColorNameKr, Integer price, Integer priceVn,
+                              Integer priceKr, Double percentSales, Double percentSalesVn, Double percentSalesKr,
+                              Double percentKol, Double percentKolVn, Double percentKolKr, Integer productRemain,
+                              Integer productRemainVn, Integer productRemainKr, Integer priceSales,
+                              Integer priceSalesVn, Integer priceSalesKr, Integer priceAfterSales,
+                              Integer priceAfterSalesVn, Integer priceAfterSalesKr) {
+        this.dynamicColorId = dynamicColorId;
+        this.dynamicColorCode = dynamicColorCode;
+        this.dynamicColorName = dynamicColorName;
+        this.dynamicColorNameVn = dynamicColorNameVn;
+        this.dynamicColorNameKr = dynamicColorNameKr;
         this.price = price;
         this.priceVn = priceVn;
         this.priceKr = priceKr;
@@ -51,31 +57,53 @@ public class DynamicSizes implements Serializable {
         this.productRemain = productRemain;
         this.productRemainVn = productRemainVn;
         this.productRemainKr = productRemainKr;
-        this.priceAfterSales = priceAfterSales;
-        this.priceAfterSalesVn = priceAfterSalesVn;
-        this.priceAfterSalesKr = priceAfterSalesKr;
         this.priceSales = priceSales;
         this.priceSalesVn = priceSalesVn;
         this.priceSalesKr = priceSalesKr;
+        this.priceAfterSales = priceAfterSales;
+        this.priceAfterSalesVn = priceAfterSalesVn;
+        this.priceAfterSalesKr = priceAfterSalesKr;
     }
 
-
-
-    // Getter & Setter đầy đủ cho tất cả thuộc tính
-    public Integer getDynamicSizeId() {
-        return dynamicSizeId;
+    // Getters and Setters
+    public Integer getDynamicColorId() {
+        return dynamicColorId;
     }
 
-    public void setDynamicSizeId(Integer dynamicSizeId) {
-        this.dynamicSizeId = dynamicSizeId;
+    public void setDynamicColorId(Integer dynamicColorId) {
+        this.dynamicColorId = dynamicColorId;
     }
 
-    public String getDynamicSizeCode() {
-        return dynamicSizeCode;
+    public String getDynamicColorCode() {
+        return dynamicColorCode;
     }
 
-    public void setDynamicSizeCode(String dynamicSizeCode) {
-        this.dynamicSizeCode = dynamicSizeCode;
+    public void setDynamicColorCode(String dynamicColorCode) {
+        this.dynamicColorCode = dynamicColorCode;
+    }
+
+    public String getDynamicColorName() {
+        return dynamicColorName;
+    }
+
+    public void setDynamicColorName(String dynamicColorName) {
+        this.dynamicColorName = dynamicColorName;
+    }
+
+    public String getDynamicColorNameVn() {
+        return dynamicColorNameVn;
+    }
+
+    public void setDynamicColorNameVn(String dynamicColorNameVn) {
+        this.dynamicColorNameVn = dynamicColorNameVn;
+    }
+
+    public String getDynamicColorNameKr() {
+        return dynamicColorNameKr;
+    }
+
+    public void setDynamicColorNameKr(String dynamicColorNameKr) {
+        this.dynamicColorNameKr = dynamicColorNameKr;
     }
 
     public Integer getPrice() {
@@ -174,6 +202,30 @@ public class DynamicSizes implements Serializable {
         this.productRemainKr = productRemainKr;
     }
 
+    public Integer getPriceSales() {
+        return priceSales;
+    }
+
+    public void setPriceSales(Integer priceSales) {
+        this.priceSales = priceSales;
+    }
+
+    public Integer getPriceSalesVn() {
+        return priceSalesVn;
+    }
+
+    public void setPriceSalesVn(Integer priceSalesVn) {
+        this.priceSalesVn = priceSalesVn;
+    }
+
+    public Integer getPriceSalesKr() {
+        return priceSalesKr;
+    }
+
+    public void setPriceSalesKr(Integer priceSalesKr) {
+        this.priceSalesKr = priceSalesKr;
+    }
+
     public Integer getPriceAfterSales() {
         return priceAfterSales;
     }
@@ -198,27 +250,5 @@ public class DynamicSizes implements Serializable {
         this.priceAfterSalesKr = priceAfterSalesKr;
     }
 
-    public Integer getPriceSales() {
-        return priceSales;
-    }
 
-    public void setPriceSales(Integer priceSales) {
-        this.priceSales = priceSales;
-    }
-
-    public Integer getPriceSalesVn() {
-        return priceSalesVn;
-    }
-
-    public void setPriceSalesVn(Integer priceSalesVn) {
-        this.priceSalesVn = priceSalesVn;
-    }
-
-    public Integer getPriceSalesKr() {
-        return priceSalesKr;
-    }
-
-    public void setPriceSalesKr(Integer priceSalesKr) {
-        this.priceSalesKr = priceSalesKr;
-    }
 }

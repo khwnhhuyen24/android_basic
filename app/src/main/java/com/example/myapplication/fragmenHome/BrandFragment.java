@@ -32,18 +32,27 @@ public class BrandFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_brand, container, false);
 
-        recyclerView = view.findViewById(R.id.recyclerBrand);
 
+
+
+        initView(view);
+        initEvent();
+        return view;
+    }
+
+    private void initView(View view){
+        recyclerView = view.findViewById(R.id.recyclerBrand);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3));
+    }
 
+    private void initEvent(){
         // 👉 Dùng dữ liệu từ file giả lập riêng
-        brandList = MockBrandData.getMockBrands();
+        if (brandList != null && !brandList.isEmpty()) {
+            adapter = new BrandAdapter(requireContext(), brandList);
+            recyclerView.setAdapter(adapter);
+        }
 
-        adapter = new BrandAdapter(requireContext(), brandList);
-        recyclerView.setAdapter(adapter);
-
-        return view;
     }
 }

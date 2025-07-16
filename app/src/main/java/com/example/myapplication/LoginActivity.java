@@ -12,14 +12,23 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class LoginActivity extends AppCompatActivity {
-
+    TextView loginKol;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
-        TextView loginKol = findViewById(R.id.LoginKol);
 
+
+        initView();
+        initEvent();
+
+    }
+    private void initView(){
+        loginKol = findViewById(R.id.LoginKol);
+    }
+
+    private void initEvent(){
         loginKol.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

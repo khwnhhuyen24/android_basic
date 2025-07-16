@@ -61,18 +61,19 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         // Số lượt đánh giá + nhãn
         holder.textReviewCount.setText("(" + product.getAverageStar() + ")");
-        holder.textReviewLabel.setText(product.getCommentCount() + " ");
-        holder.textReviewLabel.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_tym, 0);
+        holder.textReviewLabel.setText(product.getCommentCount() + " đánh giá ");
+        holder.textReviewLabel.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
 
         // Rating sao
         holder.ratingBar.setRating((float) product.getAverageStar());
 
         // ✅ Load ảnh sản phẩm từ URL
         Glide.with(context)
-                .load(product.getProductImageUrl())
-                .placeholder(R.drawable.banner1) // ảnh tạm
-                .error(R.drawable.banner3)       // nếu lỗi
+                .load(product.getFirstImageUrl())
+                .placeholder(R.drawable.banner1)
+                .error(R.drawable.banner3)
                 .into(holder.imageProduct);
+
 
         // Gạch ngang giá gốc
         holder.textOldPrice.setPaintFlags(holder.textOldPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);

@@ -50,7 +50,7 @@
                 android:layout_marginTop="161dp"
                 android:paddingHorizontal="8dp"
                 android:background="#88000000"
-                android:text="1/4"
+                android:text=""
                 android:textColor="@android:color/white"
                 android:textSize="9sp"
                 android:gravity="center"

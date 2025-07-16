@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // todo navigate to login screen
+        // dung shared preference lay token, neu co token thi ra luon man hinh targetActivity, neeus ko co ra manf loginActivity
         Intent m = new Intent(this, LoginActivity.class);
         startActivity(m);
         finish();

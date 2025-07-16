@@ -35,15 +35,25 @@ public class HomeFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        initView(view);
+        initEvemt();
+        return view;
+
+    }
+
+    private void initView(View view){
         tabAll = view.findViewById(R.id.tab_all);
         tabBest = view.findViewById(R.id.tab_best);
         tabReview = view.findViewById(R.id.tab_review);
         tabEvent = view.findViewById(R.id.tab_event);
 
-// Khởi tạo danh sách sau khi findViewById
+    }
+
+    private void initEvemt(){
+        // Khởi tạo danh sách sau khi findViewById
         tabs = Arrays.asList(tabAll, tabBest, tabReview, tabEvent);
 
-// Load mặc định
+        // Load mặc định
         loadFragment(new AllFragment());
         selectTab(tabAll); // Làm sáng tab mặc định
 
@@ -66,9 +76,6 @@ public class HomeFragment extends Fragment {
             selectTab(tabEvent);
             loadFragment(new EventFragment());
         });
-
-
-        return view;
 
 
     }

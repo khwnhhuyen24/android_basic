@@ -24,7 +24,12 @@ public class TargetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_target);
 
-        // Khai báo tất cả các RadioButton vào 1 mảng để dễ xử lý
+        initView();
+        initEvent();
+
+    }
+
+    private void initView(){
         radioButtons = new RadioButton[]{
                 findViewById(R.id.rbChamSocDaMat),
                 findViewById(R.id.rbMakeup),
@@ -40,10 +45,12 @@ public class TargetActivity extends AppCompatActivity {
                 findViewById(R.id.rbDam),
                 findViewById(R.id.rbQuanNam)
         };
-
         btnSave = findViewById(R.id.btnSave);
         btnSkip = findViewById(R.id.Skip);
 
+    }
+
+    private void initEvent(){
         // Mặc định nút save bị tắt
         updateSaveButtonState();
 
@@ -67,6 +74,7 @@ public class TargetActivity extends AppCompatActivity {
             ArrayList<String> selectedItems = new ArrayList<>();
             for (RadioButton rb : radioButtons) {
                 if (rb.isChecked()) selectedItems.add(rb.getText().toString());
+                Toast.makeText(TargetActivity.this, "Please select 1 item", Toast.LENGTH_LONG).show();
             }
 
 

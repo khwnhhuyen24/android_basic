@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public class SelectProductFragment extends Fragment {
-
+private    ImageButton Back;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -19,12 +19,19 @@ public class SelectProductFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_select_product, container, false);
 
-        ImageButton icBack = view.findViewById(R.id.icback);
-        icBack.setOnClickListener(v -> {
+        initView(view);
+        initEvent();
+        return view;
+    }
+    private void initView(@NonNull View view){
+
+        Back = view.findViewById(R.id.icback);
+    }
+
+    private void initEvent(){
+        Back.setOnClickListener(v -> {
 
             requireActivity().finish();
         });
-
-        return view;
     }
 }

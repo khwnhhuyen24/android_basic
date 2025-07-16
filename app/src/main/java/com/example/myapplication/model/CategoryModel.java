@@ -3,7 +3,7 @@ package com.example.myapplication.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Category implements Serializable {
+public class CategoryModel implements Serializable {
     private int categoryId;
     private int categoryParentId;
     private String categoryParentName;
@@ -12,7 +12,7 @@ public class Category implements Serializable {
     private String categoryName;
     private String categoryImage;
     private ArrayList<Object> categorySlideImages;
-    private ArrayList<CategoryParentSlideImage> categoryParentSlideImages;
+    private ArrayList<CategoryParentSlideImageModel> categoryParentSlideImages;
 
     public int getCategoryId() {
         return categoryId;
@@ -78,11 +78,11 @@ public class Category implements Serializable {
         this.categorySlideImages = categorySlideImages;
     }
 
-    public ArrayList<CategoryParentSlideImage> getCategoryParentSlideImages() {
+    public ArrayList<CategoryParentSlideImageModel> getCategoryParentSlideImages() {
         return categoryParentSlideImages;
     }
 
-    public void setCategoryParentSlideImages(ArrayList<CategoryParentSlideImage> categoryParentSlideImages) {
+    public void setCategoryParentSlideImages(ArrayList<CategoryParentSlideImageModel> categoryParentSlideImages) {
         this.categoryParentSlideImages = categoryParentSlideImages;
     }
 }

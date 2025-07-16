@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="8dp"
-    android:layout_margin="11dp"
+    android:padding="3dp"
+    android:layout_margin="7dp"
     android:background="#F8F6F6"
     android:elevation="2dp">
 
-    <!-- Ảnh sản phẩm bo góc -->
+    <!-- Ảnh sản phẩm -->
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imageProduct"
         android:layout_width="match_parent"
         android:layout_height="160dp"
         android:scaleType="centerCrop"
-        android:background="@drawable/login_tiktok"/>
+        android:background="@drawable/login_tiktok" />
 
     <!-- Rating và nhận xét -->
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="4dp"
-        android:gravity="left">
+        android:gravity="start">
 
         <!-- RatingBar -->
         <RatingBar
@@ -32,43 +33,48 @@
             android:numStars="5"
             android:stepSize="0.5"
             android:isIndicator="true"
+            android:layout_marginTop="2dp"
             style="?android:attr/ratingBarStyleSmall"
-            android:theme="@style/RatingBarStyle" />
+            android:theme="@style/RatingBarStyle"
+            android:padding="0dp"
+            android:scaleX="0.7"
+            android:scaleY="0.7"/>
 
-        <!-- Số lượng đánh giá -->
+        <TextView
+            android:id="@+id/textReviewCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text=""
+            android:textColor="#CC0146"
+            android:textSize="9sp"
+            android:maxLines="1" />
 
+        <!-- Số lượt đánh giá -->
         <TextView
             android:id="@+id/textReviewLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
-            android:text=" "
-            android:textColor="#DB0C52"
-            android:textSize="12sp" />
-        <!-- Nhận xét -->
-        <TextView
-            android:id="@+id/textReviewCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text=""
-            android:textSize="12sp"
-            android:textColor="#CC0146"
-            android:layout_marginStart="76dp" />
-    </LinearLayout>
+            android:textColor="#DB0C52"
+            android:textSize="9sp" />
 
+
+    </LinearLayout>
 
     <!-- Tên sản phẩm -->
     <TextView
         android:id="@+id/textProductName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
+        android:textSize="9sp"
         android:textColor="#000"
         android:maxLines="2"
         android:ellipsize="end"
         android:layout_marginTop="4dp" />
 
-    <!-- Giá -->
+    <!-- Giá và đã bán -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -76,34 +82,35 @@
         android:layout_marginTop="4dp"
         android:gravity="center_vertical">
 
-        <!-- Giá gốc -->
+        <!-- Giá cũ -->
         <TextView
             android:id="@+id/textOldPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
+            android:textSize="9sp"
             android:textColor="#888"
-            />
+            android:text="" />
 
         <!-- Giá mới -->
         <TextView
             android:id="@+id/textNewPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
+            android:textSize="11sp"
             android:textColor="#000"
             android:textStyle="bold"
-            android:layout_marginStart="6dp" />
-    </LinearLayout>
+            android:layout_marginStart="6dp"
+            android:text="" />
 
-    <!-- Đã bán -->
-    <TextView
-        android:id="@+id/textSold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="12sp"
-        android:textColor="#777"
-        android:layout_marginTop="2dp"
-        android:layout_gravity="end" />
+        <!-- Đã bán -->
+        <TextView
+            android:id="@+id/textSold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="9sp"
+            android:textColor="#777"
+            android:layout_marginStart="6dp"
+            android:text="" />
+    </LinearLayout>
 
 </LinearLayout>

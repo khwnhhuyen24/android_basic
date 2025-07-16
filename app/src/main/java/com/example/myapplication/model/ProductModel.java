@@ -9,10 +9,6 @@ public class ProductModel implements Serializable {
 
     private int productId;
     private String productCode;
-
-    // Thay productImage int bằng String để lưu URL ảnh đại diện
-    private String productImageUrl;
-
     private int productRemain;
     private int productRemainVn;
     private int productRemainKr;
@@ -58,13 +54,13 @@ public class ProductModel implements Serializable {
     private int categoryId;
 
     private Brand brand;
-    private Category category;
+    private CategoryModel category;
 
     private boolean likeStatus;
     private String saveStatus;
 
-    private List<DynamicSizes> dynamicSizes;
-    private transient List<DynamicColors> dynamicColors;
+    private List<DynamicSizesModel> dynamicSizes;
+    private transient List<DynamicColorsModel> dynamicColors;
 
     // Getter và Setter
     public int getProductId() { return productId; }
@@ -72,10 +68,6 @@ public class ProductModel implements Serializable {
 
     public String getProductCode() { return productCode; }
     public void setProductCode(String productCode) { this.productCode = productCode; }
-
-    // Sửa getter và setter cho ảnh đại diện là String URL
-    public String getProductImageUrl() { return productImageUrl; }
-    public void setProductImageUrl(String productImageUrl) { this.productImageUrl = productImageUrl; }
 
     public int getProductRemain() { return productRemain; }
     public void setProductRemain(int productRemain) { this.productRemain = productRemain; }
@@ -173,8 +165,8 @@ public class ProductModel implements Serializable {
     public Brand getBrand() { return brand; }
     public void setBrand(Brand brand) { this.brand = brand; }
 
-    public Category getCategory() { return category; }
-    public void setCategory(Category category) { this.category = category; }
+    public CategoryModel getCategory() { return category; }
+    public void setCategory(CategoryModel category) { this.category = category; }
 
     public boolean isLikeStatus() { return likeStatus; }
     public void setLikeStatus(boolean likeStatus) { this.likeStatus = likeStatus; }
@@ -182,9 +174,16 @@ public class ProductModel implements Serializable {
     public String getSaveStatus() { return saveStatus; }
     public void setSaveStatus(String saveStatus) { this.saveStatus = saveStatus; }
 
-    public List<DynamicSizes> getDynamicSizes() { return dynamicSizes; }
-    public void setDynamicSizes(List<DynamicSizes> dynamicSizes) { this.dynamicSizes = dynamicSizes; }
+    public List<DynamicSizesModel> getDynamicSizes() { return dynamicSizes; }
+    public void setDynamicSizes(List<DynamicSizesModel> dynamicSizes) { this.dynamicSizes = dynamicSizes; }
 
-    public List<DynamicColors> getDynamicColors() { return dynamicColors; }
-    public void setDynamicColors(List<DynamicColors> dynamicColors) { this.dynamicColors = dynamicColors; }
+    public List<DynamicColorsModel> getDynamicColors() { return dynamicColors; }
+    public void setDynamicColors(List<DynamicColorsModel> dynamicColors) { this.dynamicColors = dynamicColors; }
+
+    public String getFirstImageUrl() {
+        if (productImages != null && !productImages.isEmpty()) {
+            return productImages.get(0);
+        }
+        return null; // hoặc return URL ảnh mặc định
+    }
 }
