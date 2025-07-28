@@ -9,6 +9,10 @@ public class Brand implements Serializable {
     private String brandAvatar;
     private String brandDescription;
     private int numberProduct;
+    public int totalFollow;
+
+
+
     private String followStatus;
 
     public int getBrandId() {
@@ -65,5 +69,13 @@ public class Brand implements Serializable {
 
     public void setFollowStatus(String followStatus) {
         this.followStatus = followStatus;
+    }
+
+    public int getTotalFollow() {
+        return totalFollow;
+    }
+
+    public void setTotalFollow(int totalFollow) {
+        this.totalFollow = totalFollow;
     }
 }
