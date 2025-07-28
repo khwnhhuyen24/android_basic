@@ -32,7 +32,7 @@ public class UserModel {
     public boolean isKolGongu365;
     public boolean allowPostReview;
     public boolean requireApproveReview;
-    public ArrayList<KolSlideModel> kolSlides;
+    public ArrayList<KolSlide> kolSlides;
     public String lastLoginTime;
     public int numberCancelOrder;
 
@@ -237,11 +237,11 @@ public class UserModel {
         this.requireApproveReview = requireApproveReview;
     }
 
-    public ArrayList<KolSlideModel> getKolSlides() {
+    public ArrayList<KolSlide> getKolSlides() {
         return kolSlides;
     }
 
-    public void setKolSlides(ArrayList<KolSlideModel> kolSlides) {
+    public void setKolSlides(ArrayList<KolSlide> kolSlides) {
         this.kolSlides = kolSlides;
     }
 

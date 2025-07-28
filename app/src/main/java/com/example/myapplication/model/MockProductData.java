@@ -10,10 +10,10 @@ public class MockProductData {
         List<ProductModel> list = new ArrayList<>();
 
         // ✅ Lấy danh sách brand giả lập từ MockBrandData
-        List<Brand> brandList = MockBrandData.getMockBrands();
+        List<BrandModel> brandList = MockBrandData.getMockBrands();
 
         for (int i = 0; i < brandList.size(); i++) {
-            Brand brand = brandList.get(i);
+            BrandModel brand = brandList.get(i);
             int productId = i + 1;
 
             ProductModel product = new ProductModel();

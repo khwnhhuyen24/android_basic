@@ -8,9 +8,11 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
-import com.example.myapplication.model.Brand;
+import com.example.myapplication.model.BrandModel;
+import com.example.myapplication.model.FollowerRespon;
 import com.google.android.material.imageview.ShapeableImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -19,9 +21,9 @@ import androidx.recyclerview.widget.RecyclerView;
 public class BrandAdapter extends RecyclerView.Adapter<BrandAdapter.BrandViewHolder> {
 
     private Context context;
-    private List<Brand> brandList;
+    private List<BrandModel> brandList;
 
-    public BrandAdapter(Context context, List<Brand> brandList) {
+    public BrandAdapter(Context context, List<BrandModel> brandList) {
         this.context = context;
         this.brandList = brandList;
     }
@@ -35,8 +37,8 @@ public class BrandAdapter extends RecyclerView.Adapter<BrandAdapter.BrandViewHol
 
     @Override
     public void onBindViewHolder(@NonNull BrandViewHolder holder, int position) {
-        Brand brand = brandList.get(position);
-        holder.idBrand.setText(brand.getBrandName());
+        BrandModel brand = brandList.get(position);
+        holder.tvBrand.setText(brand.getBrandName());
 
         String avatarUrl = brand.getBrandAvatar();
 
@@ -52,14 +54,19 @@ public class BrandAdapter extends RecyclerView.Adapter<BrandAdapter.BrandViewHol
         return brandList.size();
     }
 
+    public void setData(ArrayList<BrandModel> list) {
+        this.brandList = list != null ? list : new ArrayList<>();
+        notifyDataSetChanged();
+    }
+
     public static class BrandViewHolder extends RecyclerView.ViewHolder {
         ShapeableImageView imgLogo;
-        TextView idBrand;
+        TextView tvBrand;
 
         public BrandViewHolder(@NonNull View itemView) {
             super(itemView);
             imgLogo = itemView.findViewById(R.id.img_logo);
-            idBrand = itemView.findViewById(R.id.idBrand);
+            tvBrand = itemView.findViewById(R.id.tvBrand);
         }
     }
 }

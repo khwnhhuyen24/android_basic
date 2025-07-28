@@ -7,8 +7,7 @@ import android.view.ViewGroup;
 
 import com.example.myapplication.R;
 import com.example.myapplication.item.BrandAdapter;
-import com.example.myapplication.model.Brand;
-import com.example.myapplication.model.MockBrandData; // 👉 Thêm dòng này để gọi dữ liệu mock
+import com.example.myapplication.model.BrandModel;
 
 import java.util.List;
 
@@ -22,7 +21,7 @@ public class BrandFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private BrandAdapter adapter;
-    private List<Brand> brandList;
+    private List<BrandModel> brandList;
 
     @Nullable
     @Override

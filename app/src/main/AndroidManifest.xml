@@ -17,9 +17,11 @@
         <activity
             android:name=".FullFragmentDetailProActivity"
             android:exported="false" />
+
         <activity
             android:name=".DetailProductActivity"
             android:exported="false" />
+
         <activity
             android:name=".SelectProductFragment"
             android:exported="false" />

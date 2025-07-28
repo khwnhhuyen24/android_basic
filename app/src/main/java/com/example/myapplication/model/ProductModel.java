@@ -53,7 +53,7 @@ public class ProductModel implements Serializable {
     private int brandId;
     private int categoryId;
 
-    private Brand brand;
+    private BrandModel brand;
     private CategoryModel category;
 
     private boolean likeStatus;
@@ -162,8 +162,8 @@ public class ProductModel implements Serializable {
     public int getCategoryId() { return categoryId; }
     public void setCategoryId(int categoryId) { this.categoryId = categoryId; }
 
-    public Brand getBrand() { return brand; }
-    public void setBrand(Brand brand) { this.brand = brand; }
+    public BrandModel getBrand() { return brand; }
+    public void setBrand(BrandModel brand) { this.brand = brand; }
 
     public CategoryModel getCategory() { return category; }
     public void setCategory(CategoryModel category) { this.category = category; }

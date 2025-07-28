@@ -2,7 +2,7 @@ package com.example.myapplication.model;
 
 import java.io.Serializable;
 
-public class Brand implements Serializable {
+public class BrandModel implements Serializable {
     private int brandId;
     private String brandName;
     private String brandType;

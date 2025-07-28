@@ -332,6 +332,8 @@
                 android:layout_height="57dp"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
+                android:backgroundTint="@color/white"
+                android:background="@drawable/login_tiktok"
                 android:paddingHorizontal="8dp">
 
                 <TextView
@@ -364,7 +366,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:background="@android:color/transparent"
+                android:paddingStart="3dp"
+                android:backgroundTint="@color/white"
+                android:background="@drawable/login_tiktok"
                 android:layout_marginTop="16dp">
 
                 <TextView
@@ -374,6 +378,7 @@
                     android:text="Thông tin sản phẩm"
                     android:paddingTop="12dp"
                     android:paddingBottom="12dp"
+                    android:background="@drawable/login_tiktok"
                     android:textColor="#80050000"
                     android:textSize="14sp" />
 
@@ -382,6 +387,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="12dp"
+                    android:background="@drawable/login_tiktok"
                     android:text="Đánh giá"
                     android:textColor="#80050000"
                     android:textSize="14sp" />
@@ -391,6 +397,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="12dp"
+                    android:background="@drawable/login_tiktok"
                     android:text="KOL Review"
                     android:textColor="#80050000"
                     android:textSize="14sp" />
@@ -407,7 +414,9 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:layout_marginTop="16dp">
+                android:background="@drawable/login_tiktok"
+                android:backgroundTint="@color/white"
+                android:layout_marginTop="11dp">
 
                 <TextView
                     android:layout_width="0dp"
@@ -429,7 +438,7 @@
                 android:id="@+id/recyclerDetailProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/white"
                 android:nestedScrollingEnabled="false"
                 android:overScrollMode="never"
                 android:clipToPadding="false"

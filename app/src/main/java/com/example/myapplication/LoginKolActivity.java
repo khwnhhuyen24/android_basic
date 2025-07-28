@@ -52,8 +52,8 @@ public class LoginKolActivity extends AppCompatActivity {
     private boolean emailStarted = false;
     private boolean passwordStarted = false;
 
-    private static final String PREFS_NAME = "tungvu11";
-    private static final String KEY_IS_LOGGED_IN = "Hanoi@123";
+    static final String PREFS_NAME = "tungvu11";
+    public static final String KEY_IS_LOGGED_IN = "Hanoi@123";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

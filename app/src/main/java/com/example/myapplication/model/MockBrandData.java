@@ -5,8 +5,8 @@ import java.util.List;
 
 public class MockBrandData {
 
-    public static List<Brand> getMockBrands() {
-        List<Brand> list = new ArrayList<>();
+    public static List<BrandModel> getMockBrands() {
+        List<BrandModel> list = new ArrayList<>();
 
         list.add(createBrand(1, "Zara", "Thời trang", "https://statics.vincom.com.vn/http/vincom-ho/thuong_hieu/anh_logo/ZARA.png/ffeb6a1b7693ac1bfa9e375d554e00f7.webp",
                 "Zara nổi tiếng với thời trang hiện đại và nhanh chóng.", 120, "FOLLOWED"));
@@ -22,9 +22,9 @@ public class MockBrandData {
         return list;
     }
 
-    private static Brand createBrand(int id, String name, String type, String avatar,
-                                     String description, int productCount, String followStatus) {
-        Brand brand = new Brand();
+    private static BrandModel createBrand(int id, String name, String type, String avatar,
+                                          String description, int productCount, String followStatus) {
+        BrandModel brand = new BrandModel();
         brand.setBrandId(id);
         brand.setBrandName(name);
         brand.setBrandType(type);

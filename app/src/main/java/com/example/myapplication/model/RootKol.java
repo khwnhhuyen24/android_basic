@@ -2,9 +2,8 @@ package com.example.myapplication.model;
 
 import java.util.ArrayList;
 
-public class Root {
+public class RootKol {
     public ArrayList<FollowerRespon> content;
-    public ArrayList<BrandModel> content;
     public PageableModel pageable;
     public int totalPages;
     public int totalElements;
@@ -12,9 +11,6 @@ public class Root {
     public boolean first;
     public Sort sort;
 
-    public void setContent(ArrayList<BrandModel> content) {
-        this.content = content;
-    }
 
     public int numberOfElements;
     public int size;

@@ -173,7 +173,7 @@ public class AllFragment extends Fragment {
 
     private void openDetail(ProductModel product) {
         Intent intent = new Intent(requireContext(), DetailProductActivity.class);
-        intent.putExtra("product", product);
+        intent.putExtra("productId", product.getProductId());
         startActivity(intent);
     }
 

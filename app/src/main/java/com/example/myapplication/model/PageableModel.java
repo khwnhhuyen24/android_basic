@@ -1,7 +1,7 @@
 package com.example.myapplication.model;
 
-public class PageableFollower {
-    public SortFollower sort;
+public class PageableModel {
+    public Sort sort;
     public int pageNumber;
     public int pageSize;
     public int offset;
@@ -16,11 +16,11 @@ public class PageableFollower {
         this.pageSize = pageSize;
     }
 
-    public SortFollower getSort() {
+    public Sort getSort() {
         return sort;
     }
 
-    public void setSort(SortFollower sort) {
+    public void setSort(Sort sort) {
         this.sort = sort;
     }
 

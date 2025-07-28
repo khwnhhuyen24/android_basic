@@ -15,6 +15,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.item.ProductAdapter;
 import com.example.myapplication.model.BestProductResponse;
 import com.example.myapplication.model.ProductModel;
+import com.example.myapplication.remote.ApiClient;
 import com.example.myapplication.remote.ApiService;
 
 import java.util.List;
@@ -39,7 +40,6 @@ public class BestSellerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_best_seller);
 
         initView();
-        initRetrofit();
         loadBestSellerProducts();
         initEvent();
     }
@@ -50,16 +50,10 @@ public class BestSellerActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
     }
 
-    private void initRetrofit() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://mobile.gongu365.vn/v10/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        apiService = retrofit.create(ApiService.class);
-    }
+//
 
     private void loadBestSellerProducts() {
+        ApiService apiService = ApiClient.getRetrofit().create(ApiService.class);
         Call<BestProductResponse> call = apiService.getBestProduct();
         call.enqueue(new Callback<BestProductResponse>() {
             @Override

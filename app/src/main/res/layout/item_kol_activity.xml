@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="11dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imgAvatar"
+        android:layout_width="71dp"
+        android:layout_height="71dp"
+        android:scaleType="centerCrop"
+        android:padding="5dp"
+        android:layout_gravity="center"
+        app:shapeAppearanceOverlay="@style/circleImageView"
+        app:strokeWidth="2dp"
+        app:strokeColor="@color/gray"/>
+
+    <TextView
+        android:id="@+id/txtDisplayName"
+        android:text=""
+        android:textSize="13sp"
+        android:gravity="start"
+        android:layout_marginStart="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

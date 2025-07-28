@@ -1,6 +1,10 @@
 package com.example.myapplication.model;
 
-public class SortFollower{
+public class Sort {
+    public boolean sorted;
+    public boolean unsorted;
+    public boolean empty;
+
     public boolean isSorted() {
         return sorted;
     }
@@ -25,7 +29,5 @@ public class SortFollower{
         this.empty = empty;
     }
 
-    public boolean sorted;
-    public boolean unsorted;
-    public boolean empty;
+
 }
