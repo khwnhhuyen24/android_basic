@@ -37,4 +37,8 @@ public interface ApiService {
 
     @PUT("api/customer/logout")
     Call<Void> logout(@Body LogoutParams params);
+
+    @PUT("api/kol/update-info")
+    Call<KolAccountModel> updateUser(@Body KolAccountModel user);
+
 }

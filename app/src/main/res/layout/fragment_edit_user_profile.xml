@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditUserProfile"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:orientation="vertical">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="35dp"
+       android:layout_marginTop="11dp">
+       
+       <ImageView
+           android:id="@+id/back"
+           android:layout_width="21dp"
+           android:layout_height="21dp"
+           android:src="@drawable/ic_back"/>
+       
+       <TextView
+           android:layout_width="179dp"
+           android:layout_height="33dp"
+           android:text="Thông tin cá nhân"
+           android:textSize="17dp"
+           android:layout_marginStart="9dp" />
+   </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginTop="3dp"
+        android:orientation="vertical">
+        
+        <TextView
+            android:layout_width="89dp"
+            android:layout_height="17dp"
+            android:text="Tên hiển thị *"
+            android:textColor="#595D5F"/>
+
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="37dp"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/login_tiktok"
+            android:textColor="#37454B"/>
+     
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="21dp"
+        android:text="Số điện thoại"
+        android:textColor="#595D5F"
+        android:textSize="14dp"
+        android:layout_marginTop="9dp"/>
+
+    <EditText
+        android:id="@+id/phone"
+        android:layout_width="match_parent"
+        android:layout_height="37dp"
+        android:background="@drawable/login_tiktok"
+        android:layout_marginTop="7dp"
+        android:textColor="#37454B"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="71dp"
+        android:layout_marginTop="11dp"
+        android:orientation="horizontal">
+        
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="69dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginEnd="11dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="21dp"
+                android:textColor="#595D5F"
+                android:textSize="14dp"
+                android:text="Giới tính"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/login_tiktok" >
+
+            <Spinner
+                android:id="@+id/sex"
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:textColor="#37454B"
+                android:spinnerMode="dropdown" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="69dp"
+            android:layout_weight="1"
+            android:layout_marginStart="11dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="21dp"
+                android:textColor="#595D5F"
+                android:textSize="14dp"
+                android:text="Năm sinh"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/login_tiktok">
+
+            <Spinner
+                android:id="@+id/year"
+                android:layout_width="match_parent"
+                android:layout_height="37dp"
+                android:spinnerMode="dropdown"/>
+            </LinearLayout>
+
+        </LinearLayout>
+        
+
+    </LinearLayout>
+    
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/save"
+        android:layout_width="154dp"
+        android:layout_height="37dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="33dp"
+        android:background="@drawable/login_tiktok"
+        android:backgroundTint="#60D7B2"
+        android:textColor="@color/white"
+        android:text="Save"/>
+
+</LinearLayout>
