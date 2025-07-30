@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -54,7 +55,7 @@ public class AccountFragment extends Fragment {
 
     private ImageButton btnSearch, btnCart;
     private TextView txtDisplayName, txtEmail;
-    private Button btnSetting, btnLogout;
+    private LinearLayout btnSetting, btnLogout;
     private ImageView imgWaybill, imgVoucher, imgTarget, imgAddress;
     private TextView txtKol, txtProduct, txtBrand;
     private ShapeableImageView imgAvatar;
@@ -65,6 +66,7 @@ public class AccountFragment extends Fragment {
     private BrandAdapter brandAdapter;
     private ProgressBar progressBarComments;
     private View indicatorLine;
+    private FrameLayout frameLayout;
 
     private ApiService apiService = ApiClient.getRetrofit().create(ApiService.class);
 
@@ -87,6 +89,8 @@ public class AccountFragment extends Fragment {
 
         highlightTabs(txtKol);
         fetchKolData(true);
+        fetchProductData();
+        fetchBrandData();
         animateIndicatorToTab(txtKol);
         fetchAccountInfo();
 
@@ -112,6 +116,7 @@ public class AccountFragment extends Fragment {
         recyclerKolAccount = view.findViewById(R.id.recyclerKolAccount);
         progressBarComments = view.findViewById(R.id.progressBarComments);
         indicatorLine = view.findViewById(R.id.indicatorLine);
+        frameLayout = view.findViewById(R.id.fragment_container);
     }
 
     private void initEvent() {
@@ -120,6 +125,10 @@ public class AccountFragment extends Fragment {
        setupTabClick(txtBrand, brandAdapter, this::fetchBrandData);
 
        btnLogout.setOnClickListener(v -> showLogoutDialog());
+
+       btnSetting.setOnClickListener(v -> {
+           loadFragment(new UserProfileFragment());
+       });
 
     }
 
@@ -175,6 +184,10 @@ public class AccountFragment extends Fragment {
 
                 if (response.isSuccessful() && response.body() != null && response.body().content != null) {
                     followerAdapter.setData(response.body().content);
+                    // Cập‑nhật tiêu đề tab
+                    int kolCount = response.body().content.size();
+                    setTabCount(txtKol, "KOL", kolCount);
+
                 } else {
                     Log.e("API_ERROR", "Danh sách KOL rỗng");
                 }
@@ -200,6 +213,9 @@ public class AccountFragment extends Fragment {
                 progressBarComments.setVisibility(View.GONE);
                 if (response.isSuccessful() && response.body() != null && response.body().content != null) {
                     productAdapter.setData(response.body().content);
+                    int productCount = response.body().content.size();
+                    setTabCount(txtProduct, "Product", productCount);
+
                 } else {
                     Log.e("API_PRODUCT", "Dữ liệu rỗng hoặc lỗi");
                 }
@@ -220,8 +236,15 @@ public class AccountFragment extends Fragment {
                 @Override
                 public void onResponse(Call <RootBrand> call, Response <RootBrand> response){
                     progressBarComments.setVisibility(View.GONE);
-                    if (response.isSuccessful() && response.body() != null && response.body().content != null) {
+
+                    if (response.isSuccessful()
+                            && response.body() != null
+                            && response.body().content != null) {
+
                         brandAdapter.setData(response.body().content);
+                        int brandCount = response.body().content.size();
+                        setTabCount(txtBrand, "Brand", brandCount);
+
                     } else {
                         Log.e("API_Brand", "Dữ liệu rỗng hoặc lỗi");
                         Log.d("API_BRAND_JSON", new Gson().toJson(response.body()));
@@ -326,5 +349,15 @@ public class AccountFragment extends Fragment {
         });
     }
 
+    private void setTabCount(TextView tab, String baseTitle, int count) {
+        tab.setText(String.format("%s (%d)", baseTitle, count));
+    }
 
+    private void loadFragment(Fragment fragment){
+        requireActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container,fragment)
+                .addToBackStack(null)
+                .commit();
+    }
 }

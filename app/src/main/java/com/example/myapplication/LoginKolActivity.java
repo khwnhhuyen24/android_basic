@@ -26,8 +26,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import com.example.myapplication.model.KolAccountModel;
 import com.example.myapplication.model.LoginParams;
 import com.example.myapplication.model.LoginResponse;
+import com.example.myapplication.model.UserModel;
 import com.example.myapplication.remote.ApiClient;
 import com.example.myapplication.remote.ApiService;
 
@@ -54,6 +56,7 @@ public class LoginKolActivity extends AppCompatActivity {
 
     static final String PREFS_NAME = "tungvu11";
     public static final String KEY_IS_LOGGED_IN = "Hanoi@123";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,9 +98,16 @@ public class LoginKolActivity extends AppCompatActivity {
                         Toast.makeText(LoginKolActivity.this, "Login successful", Toast.LENGTH_LONG).show();
 
                         // Lưu trạng thái đăng nhập vào SharedPreferences
+                        UserModel user = response.body().getCustomerAccount();
+
                         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
                         SharedPreferences.Editor editor = prefs.edit();
                         editor.putBoolean(KEY_IS_LOGGED_IN, true);
+                        editor.putInt("id", user.getCustomerId());
+                        editor.putString("name", user.getDisplayName());
+                        editor.putString("phone", user.getPhone());
+                        editor.putString("gender", user.getSex());
+                        editor.putString("birthYear", user.getBirthday());
                         editor.apply();
 
                         Log.e("LoginKolActivity", response.body().getCustomerAccount().avatar);

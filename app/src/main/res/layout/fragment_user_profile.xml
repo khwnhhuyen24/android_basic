@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserProfileFragment"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:orientation="vertical">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="35dp"
+       android:layout_marginTop="11dp">
+
+       <ImageView
+           android:id="@+id/back"
+           android:layout_width="21dp"
+           android:layout_height="21dp"
+           android:src="@drawable/ic_back"/>
+
+       <TextView
+           android:layout_width="139dp"
+           android:layout_height="21dp"
+           android:text="Cài đặt tài khoản"
+           android:layout_marginStart="7dp"
+           android:textSize="16dp"/>
+   </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#464646"
+        android:layout_marginTop="3dp"/>
+
+    <LinearLayout
+        android:id="@+id/UserInfo"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="3dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:src="@drawable/ic_user"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
+            android:textSize="14dp"
+            android:text="Thông tin cá nhân"/>
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="201dp"
+            android:src="@drawable/ic_next1"/>
+    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#464646"
+        android:layout_marginTop="3dp"/>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="3dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:src="@drawable/ic_setting"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cài đặt ngôn ngữ"
+            android:layout_marginStart="11dp"/>
+        <TextView
+            android:id="@+id/vietnamese"
+            android:layout_width="67dp"
+            android:layout_height="19dp"
+            android:layout_marginStart="47dp"
+            android:textSize="14dp"
+            android:textColor="#12A9CA"
+            android:text="Tiếng Việt"/>
+        
+        <TextView
+            android:layout_width="3dp"
+            android:layout_height="19dp"
+            android:text="|"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:textColor="#CBCBCB"
+            android:layout_marginStart="3dp"/>
+
+        <TextView
+            android:id="@+id/Korean"
+            android:layout_width="67dp"
+            android:layout_height="19dp"
+            android:layout_marginStart="3dp"
+            android:text="Tiếng Hàn"
+            android:textColor="#989898"
+            android:textSize="14dp" />
+
+    </LinearLayout>
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="3dp"
+        android:background="#464646"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="3dp"
+        android:gravity="center_vertical">
+    <ImageView
+        android:layout_width="17dp"
+        android:layout_height="17dp"
+        android:src="@drawable/ic_notice2"
+        android:backgroundTint="@color/gray"/>
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:text="Cài đặt thông báo"
+            android:layout_marginStart="11dp"/>
+        
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/Switcht_toggle"
+            android:layout_width="59dp"
+            android:layout_height="37dp"
+            android:thumb="@drawable/custom_thumb"
+            android:layout_marginStart="101dp"
+            android:trackTint="@color/switch_compat"/>
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginTop="3dp"
+        android:background="#EFEFEF"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_marginTop="3dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/ic_version"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:text="App version"
+            android:textSize="14dp"
+            android:layout_marginStart="11dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="17dp"
+            android:text="1.0.0"
+            android:textSize="14dp"
+            android:layout_marginStart="229dp"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginTop="3dp"
+        android:background="#EFEFEF"/>
+</LinearLayout>

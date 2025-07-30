@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="9dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".AccountFragment">
 
@@ -20,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginTop="11dp"
             android:gravity="center_vertical"
             android:background="#FFFFFF">
 
@@ -103,36 +105,67 @@
         <LinearLayout
             android:orientation="horizontal"
             android:gravity="center"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="7dp"
-            android:background="#FFFFFF">
-
-            <androidx.appcompat.widget.AppCompatButton
+            android:background="#FFFFFF"
+            android:paddingTop="25dp"
+            android:paddingBottom="25dp">
+            
+            <LinearLayout
                 android:id="@+id/setting"
-                android:text="Cài đặt"
-                android:textSize="13dp"
-                android:layout_width="135dp"
-                android:layout_marginStart="25dp"
-                android:background="@drawable/login_tiktok"
-                android:layout_height="wrap_content" />
+                android:layout_width="152dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:background="@drawable/login_tiktok">
+                
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/setting"/>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Cài đặt"
+                    android:layout_marginStart="17dp"
+                    android:gravity="center"
+                    android:textSize="14dp"/>
+            </LinearLayout>
 
+            <FrameLayout
+                android:id="@+id/fragment_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
-            <androidx.appcompat.widget.AppCompatButton
+            <LinearLayout
                 android:id="@+id/logout"
-                android:text="Đăng xuất"
-                android:textSize="13dp"
-                android:layout_width="135dp"
-                android:layout_marginStart="27dp"
-                android:background="@drawable/login_tiktok"
-                android:layout_height="wrap_content" />
+                android:layout_width="152dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:layout_marginStart="25dp"
+                android:background="@drawable/login_tiktok">
+
+                <ImageView
+                    android:layout_width="19dp"
+                    android:layout_height="19dp"
+                    android:src="@drawable/log_off"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Đăng xuất"
+                    android:layout_marginStart="17dp"
+                    android:gravity="center"
+                    android:textSize="14dp"/>
+            </LinearLayout>
+
+
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:background="#E7E5E5"/>
+            android:layout_width="399dp"
+            android:layout_height="7dp"
+            android:background="#EFEFEF"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -143,6 +176,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
+                android:layout_marginTop="16dp"
                 android:text="Quản lí cá nhân"/>
 
         <!-- Quản lí cá nhân -->
@@ -188,8 +222,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
+            android:layout_width="399dp"
+            android:layout_height="7dp"
             android:background="#E7E5E5"/>
         <LinearLayout
             android:layout_width="match_parent"
@@ -211,8 +245,8 @@
                 android:src="@drawable/ic_next"/>
         </LinearLayout>
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
+            android:layout_width="399dp"
+            android:layout_height="7dp"
             android:background="#E7E5E5"/>
         <!-- Nhật ký follow -->
         <TextView
@@ -232,21 +266,22 @@
 
             <TextView
                 android:id="@+id/txtKol"
-                android:text="  KOL "
+                android:text="   "
                 android:layout_marginEnd="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
+
             <TextView
                 android:id="@+id/txtProduct"
-                android:text="Sản phẩm "
+                android:text=" "
                 android:layout_marginEnd="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/txtBrand"
-                android:text="Brand "
+                android:text=" "
                 android:textColor="@color/gray"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
