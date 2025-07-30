@@ -1,5 +1,8 @@
 package com.example.myapplication;
 
+import static com.example.myapplication.utils.Const.KEY_IS_LOGGED_IN;
+import static com.example.myapplication.utils.Const.PREFS_NAME;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,8 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class LauncherActivity extends AppCompatActivity {
 
-    private static final String PREFS_NAME = "tungvu11";
-    private static final String KEY_IS_LOGGED_IN = "Hanoi@123";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

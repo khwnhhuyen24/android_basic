@@ -20,7 +20,9 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.myapplication.DetailProductActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.base.OnItemClickListener;
 import com.example.myapplication.item.BannerAdapter;
+import com.example.myapplication.item.BannerAdapter1;
 import com.example.myapplication.item.ProductAdapter;
 import com.example.myapplication.model.BestProductResponse;
 import com.example.myapplication.model.MockProductData;
@@ -132,6 +134,16 @@ public class AllFragment extends Fragment {
 
             BannerAdapter bannerAdapter = new BannerAdapter(banners);
             viewPager.setAdapter(bannerAdapter);
+
+        BannerAdapter1 bannerAdapter1 = new BannerAdapter1(banners);
+
+        bannerAdapter1.setOnItemClickListener(new OnItemClickListener<Integer>() {
+            @Override
+            public void onItemClick(Integer item, int position) {
+
+            }
+        });
+        viewPager.setAdapter(bannerAdapter1);
 
             // Setup indicator
             setupIndicator(banners.size());
