@@ -3,9 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
     android:orientation="vertical"
     android:padding="16dp">
+
+    <LinearLayout
+        android:id="@+id/productCart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:background="#FFFFFF">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -209,6 +216,88 @@
             android:textColor="#FFFFFF"
             android:textSize="14dp"
             android:layout_weight="2"/>
+    </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/cartEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:background="#F3F3F3">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="29dp"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:layout_width="21dp"
+                android:layout_height="21dp"
+                android:src="@drawable/ic_back"
+                android:backgroundTint="@color/white"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:text="Giỏ hàng"
+                android:textColor="#595D5F"
+                android:textStyle="bold"
+                android:layout_marginStart="11dp"
+                android:textSize="16dp"/>
+
+        </LinearLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:src="@drawable/img_cart_empty"
+            android:contentDescription="@string/app_name"
+            android:scaleType="centerInside"
+            android:padding="12dp"/>
+
+
+        <!-- Tiêu đề -->
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Chưa có sản phẩm nào !"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:layout_gravity="center"
+            android:textColor="#595D5F"/>
+
+        <!-- Mô tả phụ -->
+        <TextView
+            android:id="@+id/tvDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:text="Besoul còn rất nhiều sản phẩm dành cho bạn, hãy dành thêm thời gian để chọn sản phẩm nhé"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:lineSpacingExtra="2dp"
+            android:textColor="#595D5F"
+            app:layout_constraintWidth_percent="0.8"/>
+
+        <!-- Nút hành động -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnContinue"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:layout_marginTop="33dp"
+            android:text="Tiếp tục mua sắm"
+            android:textAllCaps="false"
+            android:layout_gravity="center"
+            app:backgroundTint="#60D7B2"
+            app:cornerRadius="8dp"
+            app:iconTint="@android:color/white"
+            />
     </LinearLayout>
 
 </LinearLayout>

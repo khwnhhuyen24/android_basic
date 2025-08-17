@@ -51,7 +51,7 @@ import retrofit2.Response;
 
 public class AccountFragment extends Fragment {
 
-
+    private AppDatabase db;
     private ImageButton btnSearch, btnCart;
     private TextView txtDisplayName, txtEmail;
     private LinearLayout btnSetting, btnLogout;
@@ -76,6 +76,7 @@ public class AccountFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
 
         initView(view);
+         db = AppDatabase.getInstance(requireContext());
 
         recyclerKolAccount.setLayoutManager(
                 new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -126,19 +127,10 @@ public class AccountFragment extends Fragment {
        btnLogout.setOnClickListener(v -> showLogoutDialog());
 
        btnCart.setOnClickListener(v -> {
-           AppDatabase db = AppDatabase.getInstance(requireContext());
-           int count = db.productDAO().getProductCount();
 
-
-           if (count > 0) {
-               // Có sản phẩm → mở giỏ hàng đầy
                Intent intent = new Intent(getActivity(), ProductCartActivity.class);
                startActivity(intent);
-           } else {
-               // Không có sản phẩm → mở giỏ hàng trống
-               Intent intent = new Intent(getActivity(), CartEmpytyActivity.class);
-               startActivity(intent);
-           }
+
        });
 
        btnSetting.setOnClickListener(v -> {
