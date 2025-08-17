@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -25,6 +27,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.bumptech.glide.Glide;
 import com.example.myapplication.item.BannerProductAdapter;
 import com.example.myapplication.item.ProductAdapter;
+import com.example.myapplication.local.AppDatabase;
 import com.example.myapplication.model.ProductModel;
 import com.example.myapplication.remote.ApiClient;
 import com.example.myapplication.remote.ApiService;
@@ -56,7 +59,7 @@ public class DetailProductActivity extends AppCompatActivity {
     private RecyclerView recyclerDetailProduct;
     private TextView pageCountText;
     LinearLayout layoutShippingNote;
-    LinearLayout headerShipping;
+    LinearLayout headerShipping, Size, color;
 
     private boolean isLiked = false;
     private boolean isShippingNoteExpanded = false;
@@ -178,7 +181,25 @@ public class DetailProductActivity extends AppCompatActivity {
             btnSelectProduct.setBackgroundColor(ContextCompat.getColor(this, android.R.color.darker_gray));
             btnSelectProduct.setEnabled(false);
         }
+
+        // 🔥 Check hiển thị size
+        if (product.getDynamicSizes() != null && !product.getDynamicSizes().isEmpty()) {
+            Size.setVisibility(View.VISIBLE);
+            // TODO: bạn có thể add danh sách size vào layout (ví dụ TextView hoặc RecyclerView)
+        } else {
+            Size.setVisibility(View.GONE);
+        }
+
+        // 🔥 Check hiển thị màu
+        if (product.getDynamicColors() != null && !product.getDynamicColors().isEmpty()) {
+            color.setVisibility(View.VISIBLE);
+            // TODO: bạn có thể add danh sách màu vào layout (ví dụ ô màu hình tròn hoặc TextView)
+        } else {
+            color.setVisibility(View.GONE);
+        }
+
     }
+
 
     private void initView() {
         icBack = findViewById(R.id.icback);
@@ -213,6 +234,8 @@ public class DetailProductActivity extends AppCompatActivity {
         expandIcon = findViewById(R.id.expand);
         layoutShippingNote = findViewById(R.id.layoutShipping);
         headerShipping = findViewById(R.id.headerShipping);
+        color = findViewById(R.id.color);
+        Size = findViewById(R.id.size);
     }
 
     private void initEvent() {
@@ -245,7 +268,24 @@ public class DetailProductActivity extends AppCompatActivity {
 
         btnSelectProduct.setOnClickListener(v -> {
             if (product != null && product.getProductRemain() > 0) {
-                startFullFragment("select");
+                BottomSheetCartFragment bottomSheet = BottomSheetCartFragment.newInstance(product);
+                bottomSheet.show(getSupportFragmentManager(), "BottomSheetCartFragment");
+            }
+        });
+
+        btnCart.setOnClickListener(v -> {
+            AppDatabase db = AppDatabase.getInstance(this);
+            int count = db.productDAO().getProductCount();
+            Log.d("DB_COUNT", "Product count = " + count);
+
+            if (count > 0) {
+                // Có sản phẩm → mở giỏ hàng đầy
+                Intent intent = new Intent(DetailProductActivity.this, ProductCartActivity.class);
+                startActivity(intent);
+            } else {
+                // Không có sản phẩm → mở giỏ hàng trống
+                Intent intent = new Intent(DetailProductActivity.this, CartEmpytyActivity.class);
+                startActivity(intent);
             }
         });
 

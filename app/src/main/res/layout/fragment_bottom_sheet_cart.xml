@@ -1,14 +1,232 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottomSheetRoot"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".BottomSheetCart">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#F4F4F4"
+    tools:context=".BottomSheetCartFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!-- Chọn size -->
+    <LinearLayout
+        android:id="@+id/layoutSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="#FFFFFF"
+        android:visibility="gone"
+        android:layout_marginBottom="8dp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/sizeS"
+            android:layout_width="0dp"
+            android:textSize="14dp"
+            android:layout_marginStart="9dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:background="#F4F3F3"
+            android:text="S"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/sizeM"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="14dp"
+            android:textColor="#000000"
+            android:background="#F4F3F3"
+            android:layout_marginStart="9dp"
+            android:layout_height="wrap_content"
+            android:text="M"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/sizeL"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="14dp"
+            android:textColor="#000000"
+            android:background="#F4F3F3"
+            android:layout_marginStart="9dp"
+            android:layout_height="wrap_content"
+            android:text="L"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/sizeXL"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="#F4F3F3"
+            android:textSize="14dp"
+            android:textColor="#000000"
+            android:layout_marginStart="9dp"
+            android:layout_height="wrap_content"
+            android:text="XL"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/sizeXXL"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textSize="14dp"
+            android:textColor="#000000"
+            android:background="#F4F3F3"
+            android:layout_marginStart="9dp"
+            android:layout_height="wrap_content"
+            android:text="XXL"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+    </LinearLayout>
+    
+    <LinearLayout
+        android:id="@+id/layoutColor"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="67dp"
+        android:visibility="gone"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="#FFFFFF"
+        android:layout_marginBottom="8dp">
+        
+        <LinearLayout
+            android:id="@+id/color_brown"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="9dp"
+            android:background="#F4F3F3">
 
-</FrameLayout>
+            <ImageView
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:src="@drawable/img_color1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:textColor="#2E2E2E"
+                android:layout_marginStart="7dp"
+                android:layout_gravity="center_vertical"
+                android:text="Nâu đất"/>
+            
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/color_pink"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="9dp"
+            android:background="#F4F3F3">
+
+            <ImageView
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:src="@drawable/img_color2"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:textColor="#2E2E2E"
+                android:layout_marginStart="7dp"
+                android:layout_gravity="center_vertical"
+                android:text="Tím hong"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#FFFFFF"/>
+
+        
+    </LinearLayout>
+
+    <!-- Danh sách size đã chọn -->
+    <LinearLayout
+        android:id="@+id/layoutSelected"
+        android:layout_width="match_parent"
+        android:layout_margin="11dp"
+        android:background="#FFFFFF"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="77dp"
+        android:background="#FFFFFF"
+        android:orientation="horizontal">
+    <!-- Tổng tiền -->
+    <TextView
+        android:id="@+id/txtTotalPrice"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="Giá tạm tính"
+        android:layout_marginStart="7dp"
+        android:textSize="16sp"
+        android:layout_marginTop="9dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:layout_marginTop="9dp"
+            android:gravity="end"
+            android:layout_marginStart="21dp"
+            android:layout_marginEnd="9dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="27dp"
+                android:text="0"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:text="Gía trên chưa bao gồm khuyến mãi"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Nút hành động -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAddCart"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/login_tiktok"
+            android:textColor="#595D5F"
+            android:text="Thêm Giỏ Hàng"
+            android:textSize="14dp"
+            android:layout_marginStart="13dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnBuyNow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Mua Ngay"
+            android:textSize="14dp"
+            android:layout_marginStart="9dp"
+            android:layout_marginEnd="13dp"
+            android:textColor="@android:color/white"
+            android:background="#60D7B2"/>
+    </LinearLayout>
+
+
+</LinearLayout>

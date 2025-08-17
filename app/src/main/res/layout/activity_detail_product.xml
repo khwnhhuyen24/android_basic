@@ -159,10 +159,13 @@
 
             <!-- Màu chọn -->
             <LinearLayout
+                android:id="@+id/color"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:gravity="center_vertical"
+
                 android:paddingVertical="8dp">
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -191,9 +194,11 @@
 
             <!-- Size Product -->
             <LinearLayout
+                android:id="@+id/size"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:layout_marginTop="8dp">
 
                 <androidx.appcompat.widget.AppCompatButton

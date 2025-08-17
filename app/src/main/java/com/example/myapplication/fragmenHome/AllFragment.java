@@ -24,8 +24,11 @@ import com.example.myapplication.base.OnItemClickListener;
 import com.example.myapplication.item.BannerAdapter;
 import com.example.myapplication.item.BannerAdapter1;
 import com.example.myapplication.item.ProductAdapter;
+import com.example.myapplication.local.AppDatabase;
+import com.example.myapplication.local.ProductDAO;
 import com.example.myapplication.model.BestProductResponse;
 import com.example.myapplication.model.MockProductData;
+import com.example.myapplication.model.ProductLocalModel;
 import com.example.myapplication.model.ProductModel;
 import com.example.myapplication.remote.ApiClient;
 import com.example.myapplication.remote.ApiService;
@@ -67,6 +70,7 @@ public class AllFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_all, container, false);
 
         initView(view);
+        
         initEvent();
 
         return view;

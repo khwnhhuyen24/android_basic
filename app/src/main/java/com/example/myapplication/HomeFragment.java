@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -10,19 +11,21 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.myapplication.fragmenHome.AllFragment;
 import com.example.myapplication.fragmenHome.BestFragment;
 import com.example.myapplication.fragmenHome.BestReviewFragment;
 import com.example.myapplication.fragmenHome.EventFragment;
+import com.example.myapplication.local.AppDatabase;
 
 import java.util.Arrays;
 import java.util.List;
 
 
 public class HomeFragment extends Fragment {
-
+    ImageButton btnCart;
     TextView tabAll, tabBest, tabReview, tabEvent;
     List<TextView> tabs;
 
@@ -46,6 +49,7 @@ public class HomeFragment extends Fragment {
         tabBest = view.findViewById(R.id.tab_best);
         tabReview = view.findViewById(R.id.tab_review);
         tabEvent = view.findViewById(R.id.tab_event);
+        btnCart = view.findViewById(R.id.btnCart);
 
     }
 
@@ -77,6 +81,7 @@ public class HomeFragment extends Fragment {
             loadFragment(new EventFragment());
         });
 
+        btnCart.setOnClickListener(v -> checkCartAndNavigate());
 
     }
 
@@ -99,6 +104,28 @@ public class HomeFragment extends Fragment {
                 .beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .commit();
+    }
+
+    private void checkCartAndNavigate() {
+        new Thread(() -> {
+            try {
+                AppDatabase db = AppDatabase.getInstance(requireContext());
+                int count = db.productDAO().getProductCount();
+
+                // Chuyển về Main Thread để cập nhật UI
+                requireActivity().runOnUiThread(() -> {
+                    if (count > 0) {
+                        Intent intent = new Intent(requireActivity(), ProductCartActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Intent intent = new Intent(requireActivity(), CartEmpytyActivity.class);
+                        startActivity(intent);
+                    }
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
 }
 

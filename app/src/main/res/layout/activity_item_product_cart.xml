@@ -1,10 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Item_productCart">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@android:color/white"
+    android:layout_marginBottom="8dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_weight="3"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <CheckBox
+        android:id="@+id/cbItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"/>
+
+
+    <ImageView
+        android:id="@+id/imgProduct"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop"
+        android:layout_marginEnd="12dp"/>
+
+    <!-- Nội dung sản phẩm -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="3"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Áo thu đông size M"
+            android:textSize="15sp"
+            android:textColor="#222222"
+            android:maxLines="1"
+            android:ellipsize="end"/>
+
+        <TextView
+            android:id="@+id/tvPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="120.000 VND"
+            android:textSize="14sp"
+            android:textColor="#222"/>
+
+        <TextView
+            android:id="@+id/tvOptions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Size: L   Màu: Đen rêu"
+            android:textSize="13sp"
+            android:textColor="#666"
+            android:layout_marginTop="2dp"/>
+
+        <!-- Tăng giảm số lượng -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="6dp">
+
+            <ImageButton
+                android:id="@+id/btnMinus"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:background="@drawable/login_tiktok"
+                android:src="@drawable/ic_decrease"
+                android:textColor="#333"/>
+
+            <TextView
+                android:id="@+id/tvQuantity"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:gravity="center"
+                android:text=""
+                android:background="@drawable/login_tiktok"
+                android:textSize="15sp"
+                android:textColor="#222"/>
+
+            <ImageButton
+                android:id="@+id/btnPlus"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:gravity="center"
+               android:src="@drawable/ic_increase"
+                android:textSize="18sp"
+                android:background="@drawable/login_tiktok"
+                android:textColor="#333"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/btnDelete"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@drawable/ic_close"
+        android:background="@drawable/login_tiktok"
+        android:padding="9dp"
+        android:layout_marginStart="11dp"
+        android:layout_gravity="bottom"/>
+
+</LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"
+        android:layout_marginTop="13dp"
+        android:background="#AFAFAF"/>
+</LinearLayout>

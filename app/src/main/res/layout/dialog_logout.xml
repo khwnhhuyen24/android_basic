@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
           android:layout_marginTop="11dp">
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/cancel"
                 android:text="Hủy"
                 android:layout_marginStart="13dp"
@@ -33,13 +33,13 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/gray"/>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/agree"
-                android:text="Đồng ý"
-                android:backgroundTint="#78A840"
-                android:layout_marginStart="39dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="39dp"
+                android:backgroundTint="#71A274"
+                android:text="Đồng ý" />
         </LinearLayout>
     </LinearLayout>
 

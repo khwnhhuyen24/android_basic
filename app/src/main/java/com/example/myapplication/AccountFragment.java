@@ -1,8 +1,8 @@
 package com.example.myapplication;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.example.myapplication.LoginKolActivity.KEY_IS_LOGGED_IN;
-import static com.example.myapplication.LoginKolActivity.PREFS_NAME;
+import static com.example.myapplication.utils.Const.KEY_IS_LOGGED_IN;
+
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -29,14 +28,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapplication.item.BrandAdapter;
 import com.example.myapplication.item.FollowerAdapter;
 import com.example.myapplication.item.ProductAdapter;
+import com.example.myapplication.local.AppDatabase;
 import com.example.myapplication.model.BestProductResponse;
 import com.example.myapplication.model.KolAccountModel;
-import com.example.myapplication.model.LoginParams;
-import com.example.myapplication.model.LoginResponse;
 import com.example.myapplication.model.LogoutParams;
 import com.example.myapplication.model.RootBrand;
 import com.example.myapplication.model.RootKol;
 import com.example.myapplication.remote.ApiClient;
+import com.example.myapplication.utils.Const;
 import com.google.android.material.imageview.ShapeableImageView;
 
 
@@ -56,7 +55,7 @@ public class AccountFragment extends Fragment {
     private ImageButton btnSearch, btnCart;
     private TextView txtDisplayName, txtEmail;
     private LinearLayout btnSetting, btnLogout;
-    private ImageView imgWaybill, imgVoucher, imgTarget, imgAddress;
+    private LinearLayout imgWaybill, imgVoucher, imgTarget, imgAddress;
     private TextView txtKol, txtProduct, txtBrand;
     private ShapeableImageView imgAvatar;
     private RecyclerView recyclerKolAccount;
@@ -125,6 +124,22 @@ public class AccountFragment extends Fragment {
        setupTabClick(txtBrand, brandAdapter, this::fetchBrandData);
 
        btnLogout.setOnClickListener(v -> showLogoutDialog());
+
+       btnCart.setOnClickListener(v -> {
+           AppDatabase db = AppDatabase.getInstance(requireContext());
+           int count = db.productDAO().getProductCount();
+
+
+           if (count > 0) {
+               // Có sản phẩm → mở giỏ hàng đầy
+               Intent intent = new Intent(getActivity(), ProductCartActivity.class);
+               startActivity(intent);
+           } else {
+               // Không có sản phẩm → mở giỏ hàng trống
+               Intent intent = new Intent(getActivity(), CartEmpytyActivity.class);
+               startActivity(intent);
+           }
+       });
 
        btnSetting.setOnClickListener(v -> {
            loadFragment(new UserProfileFragment());
@@ -300,7 +315,7 @@ public class AccountFragment extends Fragment {
                     if (response.isSuccessful()) {
 
                         // Lưu trạng thái đăng nhập vào SharedPreferences
-                        SharedPreferences prefs = getActivity().getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+                        SharedPreferences prefs = getActivity().getSharedPreferences(Const.PREFS_NAME, MODE_PRIVATE);
                         SharedPreferences.Editor editor = prefs.edit();
                         editor.putBoolean(KEY_IS_LOGGED_IN, false);
                         editor.apply();

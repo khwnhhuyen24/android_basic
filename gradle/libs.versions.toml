@@ -1,5 +1,6 @@
 [versions]
 agp = "8.5.1"
+kotlin = "1.9.23"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
@@ -14,6 +15,10 @@ picasso = "2.71828"
 retrofit = "2.10.0"
 gson = "2.11.0"
 media3Common = "1.7.1"
+#roomKtx = "2.6.1"
+#roomCompiler = "2.7.2"
+
+room = "2.6.1"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -31,8 +36,20 @@ recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version
 core = { group = "androidx.core", name = "core", version.ref = "core" }
 
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
 media3-common = { group = "androidx.media3", name = "media3-common", version.ref = "media3Common" }
 
+#androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "roomKtx" }
+#androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomCompiler" }
+
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+
 [plugins]
-android-application = { id = "com.android.application", version.ref = "agp" }
+android-application = { id = "com.android.application", version.ref = "agp"}
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin"}
+
+kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }

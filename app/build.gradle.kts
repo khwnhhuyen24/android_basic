@@ -1,6 +1,7 @@
+
 plugins {
     alias(libs.plugins.android.application)
-
+    alias(libs.plugins.kapt)
 
 }
 
@@ -16,7 +17,10 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
     }
+
+//    configurations { implementation.exclude group: 'org.jetbrains', module: 'annotations' }
 
     buildTypes {
         release {
@@ -27,6 +31,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -34,7 +39,9 @@ android {
 }
 
 dependencies {
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation(libs.retrofit.converter.gson)
+
     implementation(libs.retrofit)
     implementation(libs.gson)
     implementation(libs.picasso)
@@ -46,12 +53,21 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
     implementation(libs.media3.common)
+    implementation(libs.androidx.room.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-
     implementation("com.github.bumptech.glide:glide:4.16.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
+//    implementation(libs.androidx.room.ktx)
+//    implementation ("androidx.room:room-runtime:2.4.3")
+//    annotationProcessor ("androidx.room:room-compiler:2.4.3")
+    // implementation("org.jetbrains:annotations:23.0.0")
 
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    kapt(libs.room.compiler)
 
 }
+
+

@@ -1,7 +1,6 @@
 package com.example.myapplication;
 
 import static com.example.myapplication.utils.Const.KEY_IS_LOGGED_IN;
-import static com.example.myapplication.utils.Const.PREFS_NAME;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -29,12 +28,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
-import com.example.myapplication.model.KolAccountModel;
 import com.example.myapplication.model.LoginParams;
 import com.example.myapplication.model.LoginResponse;
 import com.example.myapplication.model.UserModel;
 import com.example.myapplication.remote.ApiClient;
 import com.example.myapplication.remote.ApiService;
+import com.example.myapplication.utils.Const;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,6 +41,8 @@ import retrofit2.Response;
 
 public class LoginKolActivity extends AppCompatActivity {
     private ApiService apiService = ApiClient.getRetrofit().create(ApiService.class);
+
+
 
     private EditText edtEmail;
     private EditText edtPassword;
@@ -102,7 +103,7 @@ public class LoginKolActivity extends AppCompatActivity {
                         // Lưu trạng thái đăng nhập vào SharedPreferences
                         UserModel user = response.body().getCustomerAccount();
 
-                        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+                        SharedPreferences prefs = getSharedPreferences(Const.PREFS_NAME,MODE_PRIVATE);
                         SharedPreferences.Editor editor = prefs.edit();
                         editor.putBoolean(KEY_IS_LOGGED_IN, true);
                         editor.putInt("id", user.getCustomerId());
