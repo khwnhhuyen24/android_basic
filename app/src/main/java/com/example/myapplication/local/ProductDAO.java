@@ -1,6 +1,7 @@
 package com.example.myapplication.local;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
@@ -18,13 +19,14 @@ public interface ProductDAO {
     @Insert
     void insertProduct(ProductLocalModel productLocalModel);
 
-    @Query("SELECT COUNT(*) FROM product")
-    int getProductCount();
-
-    @Query("DELETE FROM product WHERE id = :id")
-    void deleteProductById(int id);
 
     @Update
-    void updateProduct(ProductLocalModel productLocalModel);
+    void updateProduct(ProductLocalModel product);
+
+    @Delete
+    void deleteProduct(ProductLocalModel product);
+
+    @Query("DELETE FROM product")
+    void deleteAllProducts();
 
 }

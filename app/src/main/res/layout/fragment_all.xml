@@ -226,6 +226,7 @@
                 android:textColor="#111"
                 android:textSize="16sp"
                 android:textStyle="bold" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view_favorite"
                 android:layout_width="match_parent"

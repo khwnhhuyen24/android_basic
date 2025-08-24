@@ -51,12 +51,19 @@ import retrofit2.Response;
 
 public class AccountFragment extends Fragment {
 
-    private AppDatabase db;
-    private ImageButton btnSearch, btnCart;
-    private TextView txtDisplayName, txtEmail;
-    private LinearLayout btnSetting, btnLogout;
-    private LinearLayout imgWaybill, imgVoucher, imgTarget, imgAddress;
-    private TextView txtKol, txtProduct, txtBrand;
+    private ImageButton btnSearch;
+    private ImageButton btnCart;
+    private TextView txtDisplayName;
+    private TextView txtEmail;
+    private LinearLayout btnSetting;
+    private LinearLayout btnLogout;
+    private LinearLayout imgWaybill;
+    private LinearLayout imgVoucher;
+    private LinearLayout imgTarget;
+    private LinearLayout imgAddress;
+    private TextView txtKol;
+    private TextView txtProduct;
+    private TextView txtBrand;
     private ShapeableImageView imgAvatar;
     private RecyclerView recyclerKolAccount;
 
@@ -76,7 +83,6 @@ public class AccountFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
 
         initView(view);
-         db = AppDatabase.getInstance(requireContext());
 
         recyclerKolAccount.setLayoutManager(
                 new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)

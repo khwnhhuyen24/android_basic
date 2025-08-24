@@ -37,7 +37,7 @@ public class SuggestionActivity extends AppCompatActivity {
 
     private void initEvent(){
 
-        // Thiết lập layout cho RecyclerView (2 cột)
+
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
         @SuppressWarnings("unchecked")

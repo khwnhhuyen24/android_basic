@@ -16,7 +16,8 @@ import java.util.ArrayList;
 
 public class TargetActivity extends AppCompatActivity {
 
-    private AppCompatButton btnSave, btnSkip;
+    private AppCompatButton btnSave;
+    private AppCompatButton btnSkip;
     private RadioButton[] radioButtons;
 
     @Override

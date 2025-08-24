@@ -3,8 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingStart="16dp"
-    android:paddingEnd="16dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".AccountFragment">
 
@@ -13,15 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- iconGroup -->
-
 
         <LinearLayout
             android:id="@+id/iconGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="11dp"
+            android:padding="16dp"
             android:gravity="center_vertical"
             android:background="#FFFFFF">
 
@@ -30,8 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Thông tin Account"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textSize="14sp" />
 
             <ImageButton
                 android:id="@+id/btnSearch"
@@ -54,6 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:paddingStart="16dp"
             android:background="#FFFFFF"
             android:gravity="center_vertical">
 
@@ -108,7 +104,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#FFFFFF"
-            android:paddingTop="25dp"
+            android:padding="16dp"
             android:paddingBottom="25dp">
             
             <LinearLayout
@@ -164,20 +160,21 @@
 
         <LinearLayout
             android:layout_width="399dp"
-            android:layout_height="7dp"
+            android:layout_height="5dp"
             android:background="#EFEFEF"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
+            android:padding="16dp"
             android:orientation="vertical">
             
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:layout_marginTop="11dp"
+                android:textColor="#5A5A5A"
+                android:layout_marginTop="14dp"
                 android:text="Quản lí cá nhân"/>
 
         <!-- Quản lí cá nhân -->
@@ -225,6 +222,7 @@
                 android:id="@+id/imgVoucher"
                 android:layout_width="0dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:layout_height="88dp"
                 android:orientation="vertical">
 
@@ -255,6 +253,7 @@
                 android:id="@+id/imgTarget"
                 android:layout_width="0dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:layout_height="88dp"
                 android:orientation="vertical">
 
@@ -315,14 +314,16 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="399dp"
-            android:layout_height="7dp"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
             android:background="#E7E5E5"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:layout_marginTop="3dp">
+            android:layout_marginTop="5dp"
+            android:paddingStart="16dp">
             <!-- Đăng ký KOL -->
             <TextView
                 android:text="🔗  Đăng ký KOL"
@@ -333,20 +334,20 @@
                 android:layout_weight="1"/>
 
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_next"/>
+                android:layout_width="21dp"
+                android:layout_height="21dp"
+                android:src="@drawable/ic_next1"/>
         </LinearLayout>
         <LinearLayout
-            android:layout_width="399dp"
-            android:layout_height="7dp"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
             android:background="#E7E5E5"/>
-        <!-- Nhật ký follow -->
+
         <TextView
             android:text="Nhật ký follow  "
             android:textStyle="bold"
             android:background="@color/white"
-            android:layout_marginTop="5dp"
+            android:paddingStart="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -354,6 +355,7 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
+            android:paddingStart="16dp"
             android:layout_height="wrap_content"
             android:background="@color/white">
 
@@ -399,6 +401,7 @@
             android:id="@+id/recyclerKolAccount"
             android:background="@color/white"
             android:scrollbars="horizontal"
+            android:paddingStart="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:nestedScrollingEnabled="false" />

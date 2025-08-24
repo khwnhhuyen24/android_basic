@@ -1,6 +1,7 @@
 package com.example.myapplication.remote;
 
 import com.example.myapplication.model.BestProductResponse;
+import com.example.myapplication.model.FavoriteProductResponse;
 import com.example.myapplication.model.KolAccountModel;
 import com.example.myapplication.model.LoginParams;
 import com.example.myapplication.model.LoginResponse;
@@ -20,8 +21,11 @@ public interface ApiService {
     @POST("api/account/login-with-pass")
     Call<LoginResponse> login(@Body LoginParams params);
 
-    @GET("api/public/product/best?page=0&size=10")
+    @GET("api/public/product/best")
     Call<BestProductResponse> getBestProduct();
+
+    @GET("api/public/product/favorites")
+    Call<FavoriteProductResponse> getFavoriteProduct();
 
     @GET("api/public/product/find-by-id")
     Call<ProductModel> getProductById(@Query("productId") int id);

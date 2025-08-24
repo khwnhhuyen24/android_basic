@@ -1,11 +1,13 @@
 package com.example.myapplication.model;
 
-
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.Ignore;   // 👈 thêm import này
+
+import java.io.Serializable;
 
 @Entity(tableName = "product")
-public class ProductLocalModel {
+public class ProductLocalModel implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
@@ -20,6 +22,10 @@ public class ProductLocalModel {
     private String color;
 
     private String size;
+
+    // ⚡ Trạng thái checkbox (chỉ dùng trong UI, không lưu DB)
+    @Ignore
+    private boolean selected = false; // 👈 mặc định là chưa chọn
 
     public int getId() {
         return id;
@@ -75,5 +81,14 @@ public class ProductLocalModel {
 
     public void setSize(String size) {
         this.size = size;
+    }
+
+    // Getter/Setter cho selected
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 }

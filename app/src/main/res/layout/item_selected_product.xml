@@ -13,18 +13,19 @@
 
     <TextView
         android:id="@+id/txtProductSize"
-        android:layout_width="wrap_content"
-        android:layout_height="31dp"
+        android:layout_width="0dp"
+        android:layout_weight="3"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:layout_height="wrap_content"
         android:textSize="14dp"
-        android:text="Áo thu đông size M"/>
+        android:text=""/>
 
-        <View
-            android:layout_width="245dp"
-            android:layout_height="11dp"/>
 
         <ImageButton
             android:id="@+id/btnRemove"
-            android:layout_width="17dp"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
             android:layout_height="17dp"
             android:gravity="end"
             android:src="@drawable/ic_close"
@@ -32,42 +33,58 @@
             android:layout_marginStart="8dp"/>
     </LinearLayout>
 <LinearLayout
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="7dp"
     android:orientation="horizontal">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="1dp"
+        android:background="@drawable/login_tiktok"
+        android:orientation="horizontal">
 
     <ImageButton
         android:id="@+id/decrease"
-        android:layout_width="30dp"
+        android:layout_width="40dp"
         android:layout_height="30dp"
         android:src="@drawable/ic_decrease"
-        android:layout_gravity="center"
-        android:background="@drawable/login_tiktok"/>
+        android:background="#FFFFFF"
+        android:layout_gravity="center"/>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="#C6CFD2"/>
 
     <TextView
         android:id="@+id/txtQuantity"
         android:layout_width="40dp"
         android:layout_height="30dp"
-        android:background="@drawable/login_tiktok"
-        android:layout_gravity="center"
+        android:gravity="center"
         android:text=""/>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="#C6CFD2"/>
 
     <ImageButton
         android:id="@+id/increase"
-        android:layout_width="30dp"
+        android:layout_width="40dp"
         android:layout_height="30dp"
+        android:background="#FFFFFF"
         android:layout_gravity="center"
-        android:src="@drawable/ic_increase"
-        android:background="@drawable/login_tiktok"/>
-
+        android:src="@drawable/ic_increase" />
+</LinearLayout>
 
     <TextView
         android:id="@+id/txtProductPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
+        android:textStyle="bold"
         android:textSize="14dp"
         android:layout_marginTop="11dp"
         android:layout_marginStart="8dp"/>

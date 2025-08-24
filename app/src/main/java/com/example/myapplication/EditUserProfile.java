@@ -31,7 +31,8 @@ public class EditUserProfile extends Fragment {
 
     private EditText name;
     private EditText phone;
-    private Spinner sex, year;
+    private Spinner sex;
+    private Spinner year;
     private AppCompatButton save;
 
     private final String[] sexOptions = {"Nam", "Nữ", "Khác"};

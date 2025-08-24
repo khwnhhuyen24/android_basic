@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -14,28 +15,33 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.myapplication.R;
 import com.example.myapplication.model.DynamicColorsModel;
 import com.example.myapplication.model.DynamicSizesModel;
-import com.example.myapplication.model.ProductModel;
+import com.example.myapplication.model.ProductLocalModel;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class BottomSheetCartFragment extends BottomSheetDialogFragment {
 
-    private LinearLayout layoutSize, layoutColor, layoutSelected;
-    private TextView txtTotalPrice, price;
-    private AppCompatButton btnAddCart, btnBuyNow;
-    private TextView txtName, txtPrice, txtQuantity;
-    private ImageButton btnRemove, decrease, increase;
+    private LinearLayout layoutSize;
+    private LinearLayout layoutColor;
+    private LinearLayout layoutSelected;
 
-    private ProductModel product;
+    private TextView price; // tổng tiền
+    private AppCompatButton btnAddCart;
+    private AppCompatButton btnBuyNow;
+
+    private ProductLocalModel product;
     private Map<String, View> selectedItems = new HashMap<>(); // lưu các size/màu đã chọn
 
-    public static BottomSheetCartFragment newInstance(ProductModel product) {
+    public static BottomSheetCartFragment newInstance(ProductLocalModel product) {
         BottomSheetCartFragment sheet = new BottomSheetCartFragment();
         Bundle args = new Bundle();
         args.putSerializable("product", product);
@@ -51,11 +57,12 @@ public class BottomSheetCartFragment extends BottomSheetDialogFragment {
         View view = inflater.inflate(R.layout.fragment_bottom_sheet_cart, container, false);
 
         if (getArguments() != null) {
-            product = (ProductModel) getArguments().getSerializable("product");
+            product = (ProductLocalModel) getArguments().getSerializable("product");
         }
 
         initView(view);
         setupUI();
+        initEvent();
 
         return view;
     }
@@ -68,10 +75,10 @@ public class BottomSheetCartFragment extends BottomSheetDialogFragment {
         View bottomSheet = getDialog().findViewById(com.google.android.material.R.id.design_bottom_sheet);
         if (bottomSheet != null) {
             BottomSheetBehavior<View> behavior = BottomSheetBehavior.from(bottomSheet);
-            behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+            behavior.setState(BottomSheetBehavior.STATE_COLLAPSED); // collapsed lúc mở
             behavior.setHideable(true);
             behavior.setDraggable(true);
-            behavior.setPeekHeight(300); // chiều cao collapsed
+            behavior.setPeekHeight(500); // chiều cao collapsed
         }
     }
 
@@ -79,42 +86,81 @@ public class BottomSheetCartFragment extends BottomSheetDialogFragment {
         layoutSize = view.findViewById(R.id.layoutSize);
         layoutColor = view.findViewById(R.id.layoutColor);
         layoutSelected = view.findViewById(R.id.layoutSelected);
-        txtTotalPrice = view.findViewById(R.id.txtTotalPrice);
         price = view.findViewById(R.id.price);
         btnAddCart = view.findViewById(R.id.btnAddCart);
         btnBuyNow = view.findViewById(R.id.btnBuyNow);
     }
 
+    private void initEvent(){
+        btnAddCart.setOnClickListener(v -> {
+            ArrayList<ProductLocalModel> cartItems = new ArrayList<>();
+
+            for (Map.Entry<String, View> entry : selectedItems.entrySet()) {
+                View itemView = entry.getValue();
+
+                TextView txtQuantity = itemView.findViewById(R.id.txtQuantity);
+                int quantity = Integer.parseInt(txtQuantity.getText().toString());
+
+                String size = null, color = null;
+                String key = entry.getKey();
+                if (key.startsWith("size")) size = key.replace("size", "");
+                if (key.startsWith("color_")) color = key.replace("color_", "");
+
+                ProductLocalModel item = new ProductLocalModel();
+                item.setProductname(product.getProductname());
+                item.setProductImg(product.getProductImg());
+                item.setPrice(product.getPrice());
+                item.setCount(quantity);
+                item.setSize(size);
+                item.setColor(color);
+
+                cartItems.add(item);
+            }
+
+            // Chuyển sang ProductCartActivity
+            Intent intent = new Intent(getContext(), ProductCartActivity.class);
+            intent.putExtra("cartItems", cartItems); // nhớ ProductLocalModel implements Serializable
+            startActivity(intent);
+            dismiss(); // đóng BottomSheet
+        });
+
+
+    }
+
     private void setupUI() {
-        if (product == null) return;
+        // Hiển thị giá tổng ban đầu = giá 1 sản phẩm
+        price.setText(formatCurrency(product.getPrice()));
 
-        // Hiển thị giá
-        price.setText(formatCurrency(product.getPriceSales()));
+        boolean hasSize = product.getSize() != null && !product.getSize().isEmpty();
+        boolean hasColor = product.getColor() != null && !product.getColor().isEmpty();
 
-        // Hiển thị Size
-        if (product.getDynamicSizes() != null && !product.getDynamicSizes().isEmpty()) {
+        // ===== HIỂN THỊ SIZE =====
+        if (product.getSize() != null && !product.getSize().isEmpty()) {
             layoutSize.setVisibility(View.VISIBLE);
             layoutSize.removeAllViews();
-            for (DynamicSizesModel size : product.getDynamicSizes()) {
-                TextView btnSize = createOptionButton(String.valueOf(size));
-                btnSize.setOnClickListener(v -> addSelectedItem(String.valueOf(size), null));
-                layoutSize.addView(btnSize);
-            }
+
+            TextView btnSize = createOptionButton(product.getSize());
+            btnSize.setOnClickListener(v -> addSelectedItem(product.getSize(), null));
+            layoutSize.addView(btnSize);
         } else {
             layoutSize.setVisibility(View.GONE);
         }
 
-        // Hiển thị Màu
-        if (product.getDynamicColors() != null && !product.getDynamicColors().isEmpty()) {
+// ===== HIỂN THỊ COLOR =====
+        if (product.getColor() != null && !product.getColor().isEmpty()) {
             layoutColor.setVisibility(View.VISIBLE);
             layoutColor.removeAllViews();
-            for (DynamicColorsModel color : product.getDynamicColors()) {
-                TextView btnColor = createOptionButton(String.valueOf(color));
-                btnColor.setOnClickListener(v -> addSelectedItem(null, String.valueOf(color)));
-                layoutColor.addView(btnColor);
-            }
+
+            TextView btnColor = createOptionButton(product.getColor());
+            btnColor.setOnClickListener(v -> addSelectedItem(null, product.getColor()));
+            layoutColor.addView(btnColor);
         } else {
             layoutColor.setVisibility(View.GONE);
+        }
+
+        // ===== NẾU KHÔNG CÓ SIZE VÀ COLOR =====
+        if (!hasSize && !hasColor) {
+            addSelectedItem("Product", "Product");
         }
     }
 
@@ -127,7 +173,7 @@ public class BottomSheetCartFragment extends BottomSheetDialogFragment {
         params.setMargins(16, 8, 16, 8);
         tv.setLayoutParams(params);
         tv.setPadding(20, 10, 20, 10);
-        tv.setBackgroundResource(R.drawable.ic_checked); // drawable bo tròn
+        tv.setBackgroundResource(R.drawable.ic_checked);
         tv.setText(text);
         tv.setTextSize(14);
         tv.setTextColor(Color.BLACK);
@@ -135,35 +181,45 @@ public class BottomSheetCartFragment extends BottomSheetDialogFragment {
     }
 
     private void addSelectedItem(String size, String color) {
-        String key = size != null ? "size_" + size : "color_" + color;
+        String key;
+        if (size != null){
+            key = "size" + size;
+        } else if (color != null) {
+            key =  "color_" + color;
+        } else {
+            key = "Product";
+        }
+
         if (selectedItems.containsKey(key)) return;
 
         LayoutInflater inflater = LayoutInflater.from(getContext());
         View itemView = inflater.inflate(R.layout.item_selected_product, layoutSelected, false);
 
-        txtName = itemView.findViewById(R.id.txtProductSize);
-        txtPrice = itemView.findViewById(R.id.txtProductPrice);
-        txtQuantity = itemView.findViewById(R.id.txtQuantity);
-        decrease = itemView.findViewById(R.id.decrease);
-        increase = itemView.findViewById(R.id.increase);
-        btnRemove = itemView.findViewById(R.id.btnRemove);
+        TextView txtName = itemView.findViewById(R.id.txtProductSize);
+        TextView txtPriceItem = itemView.findViewById(R.id.txtProductPrice); // giá cố định
+        TextView txtQuantity = itemView.findViewById(R.id.txtQuantity);
+        ImageButton decrease = itemView.findViewById(R.id.decrease);
+        ImageButton increase = itemView.findViewById(R.id.increase);
+        ImageButton btnRemove = itemView.findViewById(R.id.btnRemove);
 
-        int unitPrice = product.getPriceSales();
+        int unitPrice = product.getPrice(); // giá 1 sản phẩm
         txtQuantity.setText("1");
 
         if (size != null) {
-            txtName.setText(product.getProductName() + " size " + size);
+            txtName.setText(product.getProductname() + " size " + size);
         } else if (color != null) {
-            txtName.setText(product.getProductName() + " màu " + color);
+            txtName.setText(product.getProductname() + " màu " + color);
+        } else {
+            txtName.setText(product.getId());
         }
 
-        txtPrice.setText(formatCurrency(unitPrice));
+        // Giá cố định của sản phẩm
+        txtPriceItem.setText(formatCurrency(unitPrice));
 
         // Tăng số lượng
         increase.setOnClickListener(v -> {
             int quantity = Integer.parseInt(txtQuantity.getText().toString()) + 1;
             txtQuantity.setText(String.valueOf(quantity));
-            txtPrice.setText(formatCurrency(unitPrice * quantity));
             updateTotalPrice();
         });
 
@@ -173,7 +229,6 @@ public class BottomSheetCartFragment extends BottomSheetDialogFragment {
             if (quantity > 1) {
                 quantity--;
                 txtQuantity.setText(String.valueOf(quantity));
-                txtPrice.setText(formatCurrency(unitPrice * quantity));
                 updateTotalPrice();
             }
         });
@@ -196,9 +251,9 @@ public class BottomSheetCartFragment extends BottomSheetDialogFragment {
         for (View v : selectedItems.values()) {
             TextView txtQuantity = v.findViewById(R.id.txtQuantity);
             int quantity = Integer.parseInt(txtQuantity.getText().toString());
-            total += product.getPriceSales() * quantity;
+            total += product.getPrice() * quantity; // giá cố định từ API
         }
-        txtTotalPrice.setText(formatCurrency(total));
+        price.setText(formatCurrency(total)); // hiển thị tổng tiền
     }
 
     private String formatCurrency(int value) {

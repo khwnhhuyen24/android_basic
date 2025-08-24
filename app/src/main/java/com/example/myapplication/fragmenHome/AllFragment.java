@@ -27,6 +27,8 @@ import com.example.myapplication.item.ProductAdapter;
 import com.example.myapplication.local.AppDatabase;
 import com.example.myapplication.local.ProductDAO;
 import com.example.myapplication.model.BestProductResponse;
+import com.example.myapplication.model.FavoriteProductResponse;
+import com.example.myapplication.model.ListNews;
 import com.example.myapplication.model.MockProductData;
 import com.example.myapplication.model.ProductLocalModel;
 import com.example.myapplication.model.ProductModel;
@@ -50,9 +52,15 @@ public class AllFragment extends Fragment {
     private Runnable runnable;
     private final int delay = 2000;
 
-    private Button SeeMoreSuggestion, SeeMoreFavorite, SeeMoreBest;
-    private ProductAdapter suggestionAdapter, favoriteAdapter, bestSellerAdapter;
-    private RecyclerView suggestion, favorite, bestSeller;
+    private Button SeeMoreSuggestion;
+    private Button SeeMoreFavorite;
+    private Button SeeMoreBest;
+    private ProductAdapter suggestionAdapter;
+    private ProductAdapter favoriteAdapter;
+    private ProductAdapter bestSellerAdapter;
+    private RecyclerView suggestion;
+    private RecyclerView favorite;
+    private RecyclerView bestSeller;
     private List<Integer> banners;
 
     private LinearLayout indicatorLine;
@@ -60,6 +68,7 @@ public class AllFragment extends Fragment {
 
     // Biến lưu toàn bộ danh sách bestSeller từ API
     private List<ProductModel> allBestProducts = new ArrayList<>();
+    private List<ProductModel> allFavoriteProducts = new ArrayList<>();
 
     @Nullable
     @Override
@@ -70,7 +79,7 @@ public class AllFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_all, container, false);
 
         initView(view);
-        
+
         initEvent();
 
         return view;
@@ -101,18 +110,23 @@ public class AllFragment extends Fragment {
         List<ProductModel> firstFour = fullProductList.subList(0, Math.min(4, fullProductList.size()));
 
         suggestionAdapter = new ProductAdapter(requireContext(), firstFour);
-        favoriteAdapter = new ProductAdapter(requireContext(), firstFour);
 
         suggestion.setAdapter(suggestionAdapter);
-        favorite.setAdapter(favoriteAdapter);
 
         suggestionAdapter.setOnProductClickListener(this::openDetail);
-        favoriteAdapter.setOnProductClickListener(this::openDetail);
 
         SeeMoreSuggestion.setOnClickListener(v -> openListActivity(SuggestionActivity.class, fullProductList));
-        SeeMoreFavorite.setOnClickListener(v -> openListActivity(FavoriteActivity.class, fullProductList));
 
-        // *** Chỉ gọi load API cho bestSeller ***
+        loadFavoriteProductFromApi();
+        SeeMoreFavorite.setOnClickListener(v -> {
+            if (allFavoriteProducts != null && !allFavoriteProducts.isEmpty()) {
+                openListActivity(FavoriteActivity.class, new ArrayList<>(allFavoriteProducts));
+            } else {
+                Toast.makeText(requireContext(), "Dữ liệu chưa tải xong", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
         loadBestProductsFromApi();
 
         SeeMoreBest.setOnClickListener(v -> {
@@ -229,6 +243,46 @@ public class AllFragment extends Fragment {
             @Override
             public void onFailure(Call<BestProductResponse> call, Throwable t) {
                 Toast.makeText(requireContext(), "Lỗi mạng: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void loadFavoriteProductFromApi() {
+        apiService.getFavoriteProduct().enqueue(new Callback<FavoriteProductResponse>() {
+            @Override
+            public void onResponse(Call<FavoriteProductResponse> call, Response<FavoriteProductResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    List<ListNews> apiList = response.body().getListNews();
+
+                    // Convert ListNews -> ProductModel
+                    List<ProductModel> productList = new ArrayList<>();
+                    for (ListNews news : apiList) {
+                        ProductModel product = new ProductModel(
+                                news.getId(),
+                                news.getNewsTitle(),
+                                news.getNewsType(),
+                                news.getCountryFlag(),
+                                news.getNewsContent()
+                                // thêm field nếu ProductModel có
+                        );
+                        productList.add(product);
+                    }
+
+                    // Lấy 4 sản phẩm đầu tiên
+                    List<ProductModel> firstFour = productList.subList(0, Math.min(4, productList.size()));
+
+                    favoriteAdapter = new ProductAdapter(requireContext(), firstFour);
+                    favorite.setAdapter(favoriteAdapter);
+                    favoriteAdapter.setOnProductClickListener(AllFragment.this::openDetail);
+
+                } else {
+                    Toast.makeText(requireContext(), "Lỗi khi lấy sản phẩm1", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<FavoriteProductResponse> call, Throwable t) {
+                Toast.makeText(requireContext(), "Lỗi mạng1: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

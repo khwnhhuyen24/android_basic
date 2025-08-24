@@ -162,9 +162,9 @@
         android:layout_height="77dp"
         android:background="#FFFFFF"
         android:orientation="horizontal">
+
     <!-- Tổng tiền -->
     <TextView
-        android:id="@+id/txtTotalPrice"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
@@ -187,7 +187,9 @@
                 android:id="@+id/price"
                 android:layout_width="wrap_content"
                 android:layout_height="27dp"
-                android:text="0"/>
+                android:text=""
+                android:textStyle="bold"
+                android:textSize="14dp"/>
 
             <TextView
                 android:layout_width="wrap_content"

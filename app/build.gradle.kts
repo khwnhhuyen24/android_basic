@@ -66,7 +66,8 @@ dependencies {
 
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
-//    kapt(libs.room.compiler)
+//  kapt(libs.room.compiler)
+    annotationProcessor(libs.room.compiler)
 
 }
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="7dp"
     android:background="@android:color/white"
     android:layout_marginBottom="8dp">
 
@@ -38,8 +38,8 @@
             android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Áo thu đông size M"
-            android:textSize="15sp"
+            android:text=""
+            android:textSize="13sp"
             android:textColor="#222222"
             android:maxLines="1"
             android:ellipsize="end"/>
@@ -48,15 +48,15 @@
             android:id="@+id/tvPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="120.000 VND"
-            android:textSize="14sp"
+            android:text=""
+            android:textSize="12sp"
             android:textColor="#222"/>
 
         <TextView
             android:id="@+id/tvOptions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Size: L   Màu: Đen rêu"
+            android:text=""
             android:textSize="13sp"
             android:textColor="#666"
             android:layout_marginTop="2dp"/>
@@ -66,37 +66,48 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:padding="1dp"
+            android:background="@drawable/login_tiktok"
             android:gravity="center_vertical"
             android:layout_marginTop="6dp">
 
             <ImageButton
                 android:id="@+id/btnMinus"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="21dp"
+                android:layout_height="21dp"
                 android:gravity="center"
                 android:textSize="18sp"
-                android:background="@drawable/login_tiktok"
+                android:background="#FFFFFF"
                 android:src="@drawable/ic_decrease"
                 android:textColor="#333"/>
 
+            <View
+                android:layout_width="3dp"
+                android:layout_height="25dp"
+                android:background="#C6CFD2" />
+
             <TextView
                 android:id="@+id/tvQuantity"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="21dp"
+                android:layout_height="21dp"
                 android:gravity="center"
                 android:text=""
-                android:background="@drawable/login_tiktok"
                 android:textSize="15sp"
                 android:textColor="#222"/>
 
+            <View
+                android:layout_width="1dp"
+                android:background="#C6CFD2"
+                android:layout_height="25dp"/>
+
             <ImageButton
                 android:id="@+id/btnPlus"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
+                android:layout_width="21dp"
+                android:layout_height="21dp"
                 android:gravity="center"
-               android:src="@drawable/ic_increase"
+                android:background="#FFFFFFFF"
+                android:src="@drawable/ic_increase"
                 android:textSize="18sp"
-                android:background="@drawable/login_tiktok"
                 android:textColor="#333"/>
 
         </LinearLayout>
@@ -104,8 +115,8 @@
     </LinearLayout>
     <ImageView
         android:id="@+id/btnDelete"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
         android:src="@drawable/ic_close"
         android:background="@drawable/login_tiktok"
         android:padding="9dp"

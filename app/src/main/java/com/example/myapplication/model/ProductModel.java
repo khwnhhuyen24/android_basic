@@ -62,6 +62,13 @@ public class ProductModel implements Serializable {
     private List<DynamicSizesModel> dynamicSizes;
     private transient List<DynamicColorsModel> dynamicColors;
 
+    public ProductModel(int id, String newsTitle, String newsType, String countryFlag, String newsContent) {
+    }
+
+    public ProductModel() {
+
+    }
+
     // Getter và Setter
     public int getProductId() { return productId; }
     public void setProductId(int productId) { this.productId = productId; }

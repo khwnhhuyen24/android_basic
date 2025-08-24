@@ -26,7 +26,10 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
     ImageButton btnCart;
-    TextView tabAll, tabBest, tabReview, tabEvent;
+    TextView tabAll;
+    TextView tabBest;
+    TextView tabReview;
+    TextView tabEvent;
     List<TextView> tabs;
 
 
@@ -81,7 +84,10 @@ public class HomeFragment extends Fragment {
             loadFragment(new EventFragment());
         });
 
-        btnCart.setOnClickListener(v -> checkCartAndNavigate());
+        btnCart.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), ProductCartActivity.class);
+            startActivity(intent);
+        });
 
     }
 
@@ -106,26 +112,6 @@ public class HomeFragment extends Fragment {
                 .commit();
     }
 
-    private void checkCartAndNavigate() {
-        new Thread(() -> {
-            try {
-                AppDatabase db = AppDatabase.getInstance(requireContext());
-                int count = db.productDAO().getProductCount();
 
-                // Chuyển về Main Thread để cập nhật UI
-                requireActivity().runOnUiThread(() -> {
-                    if (count > 0) {
-                        Intent intent = new Intent(requireActivity(), ProductCartActivity.class);
-                        startActivity(intent);
-                    } else {
-                        Intent intent = new Intent(requireActivity(), CartEmpytyActivity.class);
-                        startActivity(intent);
-                    }
-                });
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }).start();
-    }
 }
 
